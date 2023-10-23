@@ -2,6 +2,10 @@
 
 # dependencies
 node_modules/
+.NativeNavigation.jsx.swm
+.NativeNavigation.jsx.swn
+.NativeNavigation.jsx.swo
+.NativeNavigation.jsx.swp
 
 # Expo
 .expo/
