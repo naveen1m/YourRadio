@@ -10,13 +10,8 @@ function Main() {
 
             <View style={{ flex: 1 }}>
                 {Platform.OS == 'web' ? <WebNavigation /> :
+                    <NativeNavigation />
 
-                    <View>
-                        <Box width="100%" justifyContent="center" alignItems="center" bg="$coolGray600" >
-                            <Text color="$whitesmoke" fontWeight="$bold" fontSize={"$2xl"} width="100%" paddingLeft="$1.5" paddingTop="$10"  >Your Radio</Text>
-                        </Box>
-                        <NativeNavigation />
-                    </View>
                 }
             </View>
         </GluestackUIProvider>
@@ -24,3 +19,14 @@ function Main() {
 }
 
 export default Main
+
+
+
+/**
+ *   <View>
+                        <Box width="100%" justifyContent="center" alignItems="center" bg="$coolGray600" >
+                            <Text color="$whitesmoke" fontWeight="$bold" fontSize={"$2xl"} width="100%" paddingLeft="$1.5" paddingTop="$10"  >Your Radio</Text>
+                        </Box> 
+
+                 </View> 
+ */
