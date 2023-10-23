@@ -9,8 +9,8 @@ function WebNavigation() {
             <Horzontalnavbar />
 
             <Routes>
-                <Route path="/" exact component={Home} />
-                <Route path="/search" component={SearchPage} />
+                <Route path='/' Component={Home} />
+                <Route path='/search' Component={SearchPage} />
                 <Route path='/podcast' Component={Podcast} />
                 <Route path='/notification' Component={Notification} />
 
