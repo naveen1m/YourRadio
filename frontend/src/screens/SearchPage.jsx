@@ -1,12 +1,33 @@
 import React from 'react'
 import { View } from 'react-native'
-import { Box, Text } from '@gluestack-ui/themed'
+import { Box, Text, ScrollView, Input, InputIcon, InputSlot, InputField, SearchIcon } from '@gluestack-ui/themed'
+import SearchList from '../components/SearchList'
 
 function SearchPage() {
     return (
         <View>
-            <Box width="100%" height="100%" justifyContent="center" alignItems="center" bg="$green500" >
-                <Text color="$green" fontWeight="$bold" fontSize={"$2xl"} bg="$white" padding="$1.5" paddingTop="$10" >Search page</Text>
+            <Box marginTop={10} marginHorizontal={10}>
+
+
+                <Input
+                    variant="rounded"
+                    size="md"
+                >
+                    <InputSlot pl='$3'>
+                        <InputIcon as={SearchIcon} />
+                    </InputSlot>
+                    <InputField
+                        placeholder="Search..."
+                    />
+                </Input>
+                <Box marginTop={10}>
+                    <Text>This is search page ..</Text>
+                </Box>
+                <Box className="searchlist">
+                    <ScrollView>
+                        <SearchList />
+                    </ScrollView>
+                </Box>
             </Box>
         </View>
     )
