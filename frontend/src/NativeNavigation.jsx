@@ -52,7 +52,7 @@ function NativeNavigation() {
                 >
 
                     <Tab.Screen name={homeName} component={Home} />
-                    <Tab.Screen name={searchName} component={SearchPage} />
+                    <Tab.Screen name={searchName} component={SearchPage} options={{ headerShown: false }} />
                     <Tab.Screen name={podcastName} component={Podcast} />
                     <Tab.Screen name={notificationName} component={Notification} />
                     {/* <Tab.Screen name={profileName} component={Profile} /> */}
