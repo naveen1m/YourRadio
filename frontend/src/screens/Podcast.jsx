@@ -1,14 +1,58 @@
-import React from 'react'
-import { View } from 'react-native'
-import { Box, Text } from '@gluestack-ui/themed'
+import React, { Fragment } from 'react'
+// import { View } from 'react-native'
+import { ScrollView, View, Heading, Box, Text, HStack, VStack, Fab, FabLabel, FabIcon, TouchableOpacity, Button } from '@gluestack-ui/themed'
 
 function Podcast() {
     return (
-        <View>
-            <Box width="100%" height="100%" justifyContent="center" alignItems="center" bg="$green500" >
-                <Text color="$green" fontWeight="$bold" fontSize={"$2xl"} bg="$white" padding="$1.5" paddingTop="$10" >Podcast page</Text>
-            </Box>
-        </View>
+        <Fragment>
+            <View height="100%">
+                <View>
+                    <Heading fontWeight='$bold' my="$2" marginLeft="$1">Featured</Heading>
+                    <Box>
+                        <ScrollView horizontal>
+                            <HStack space="xs" paddingHorizontal={7}>
+                                <Box w="$40" h="$40" bg="$blue300" />
+                                <Box w="$40" h="$40" bg="$blue400" />
+                                <Box w="$40" h="$40" bg="$blue500" />
+                                <Box w="$40" h="$40" bg="$blue300" />
+                                <Box w="$40" h="$40" bg="$blue400" />
+                                <Box w="$40" h="$40" bg="$blue500" />
+                                <Box w="$40" h="$40" bg="$blue500" />
+                                <Box w="$40" h="$40" bg="$blue400" />
+                                <Box w="$40" h="$40" bg="$blue500" />
+                                <Box w="$40" h="$40" bg="$blue500" />
+                            </HStack>
+                        </ScrollView>
+                    </Box>
+                    <Heading fontWeight='$bold' my="$2" marginLeft="$1">Categories</Heading>
+                    <ScrollView>
+                        <VStack space="xs" alignItems='center'>
+                            <Box w="90%" h="$20" bg="$blue300" />
+                            <Box w="90%" h="$20" bg="$blue400" />
+                            <Box w="90%" h="$20" bg="$blue500" />
+                            <Box w="90%" h="$20" bg="$blue300" />
+                            <Box w="90%" h="$20" bg="$blue400" />
+                            <Box w="90%" h="$20" bg="$blue500" />
+                            <Box w="90%" h="$20" bg="$blue500" />
+                            <Box w="90%" h="$20" bg="$blue400" />
+                            <Box w="90%" h="$20" bg="$blue500" />
+                            <Box w="90%" h="$20" bg="$blue500" />
+                        </VStack>
+                    </ScrollView>
+
+                </View>
+
+
+                <Fab size="md" placement="bottom right" marginBottom={'$10'} isHovered={false} isDisabled={false} isPressed={false} >
+                    {/* <FabIcon as={AddIcon} mr="$1"/> */}
+                    <FabLabel color='$white'>+ Podcast</FabLabel>
+                </Fab>
+
+
+
+
+            </View>
+        </Fragment>
     )
 }
 
