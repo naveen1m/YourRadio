@@ -2,6 +2,7 @@ import express, { json } from 'express'
 import cors from 'cors'
 import connect from './src/database/mongoMemoryConnection.js'
 import morgan from 'morgan';
+import { podcastRouter, postRouter } from './src/routes/index.js';
 
 
 const port = process.env.port || 8000
@@ -12,6 +13,11 @@ app.use(json());
 app.use(cors());
 app.use(morgan('tiny'))
 app.disable('x-powered-by');
+
+
+// Mount the route handlers
+app.use('/post', postRouter);
+app.use('/podcast', podcastRouter)
 
 app.get('/', (req, res) => {
     res.send("hello there! are you listening me>>>")
