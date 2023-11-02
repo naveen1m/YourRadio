@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1047977436439",
+    "project_id": "yourradio-48676",
+    "storage_bucket": "yourradio-48676.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047977436439:android:a4397731c2bcdc1250c352",
+        "android_client_info": {
+          "package_name": "com.navstr10.frontend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1047977436439-3h1m78eof11gg67b4o3oelggveu3npff.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.navstr10.frontend",
+            "certificate_hash": "fb3e1b1690ee046f01afb2f65154da7d375329a3"
+          }
+        },
+        {
+          "client_id": "1047977436439-nuih3sn61gacdt3s7hheg8a4ga42aj70.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.navstr10.frontend",
+            "certificate_hash": "d7871aa787761bb22305fe0f2446de9ce79f1aa4"
+          }
+        },
+        {
+          "client_id": "1047977436439-u7kv2656ajnnmss3usma32nov8b4pe14.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYqmCiMccmxNVCKnstrqUJdwFNO770W14"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1047977436439-u7kv2656ajnnmss3usma32nov8b4pe14.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
