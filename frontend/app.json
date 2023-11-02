@@ -17,6 +17,16 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "plugins": [
+      [
+        "react-native-fbsdk-next",
+        {
+          "appID": "648136154103196",
+          "clientToken": "1868ce1407b0904837dc0fcb1e8918a0",
+          "displayName": "frontend"
+        }
+      ]
+    ],
     "ios": {
       "supportsTablet": true,
       "googleServicesFile": "./GoogleService-Info.plist"

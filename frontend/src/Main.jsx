@@ -78,13 +78,3 @@ function Main() {
 
 export default Main
 
-
-
-/**
- *   <View>
-                        <Box width="100%" justifyContent="center" alignItems="center" bg="$coolGray600" >
-                            <Text color="$whitesmoke" fontWeight="$bold" fontSize={"$2xl"} width="100%" paddingLeft="$1.5" paddingTop="$10"  >Your Radio</Text>
-                        </Box> 
-
-                 </View> 
- */
