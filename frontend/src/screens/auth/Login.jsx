@@ -4,6 +4,9 @@ import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/go
 import auth from '@react-native-firebase/auth';
 import { UserContext } from '../../context/UserContext';
 import LoginHeader from '../../LoginHeader';
+import axios from 'axios';
+import { API_URL } from '../../config/apiConfig';
+
 
 function Login() {
     // Set an initializing state whilst Firebase connects
@@ -25,21 +28,71 @@ function Login() {
         return subscriber; // unsubscribe on unmount
     }, []);
 
-
     const onGoogleButtonPress = async () => {
         // Check if your device supports Google Play
         await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
         // Get the users ID token
         const { idToken } = await GoogleSignin.signIn();
+        // console.log(idToken);
 
         // Create a Google credential with the token
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
         // Sign-in the user with the credential
         // return auth().signInWithCredential(googleCredential);
-        const user_signIn = auth.googleCredential(googleCredential);
+        const user_signIn = auth().signInWithCredential(googleCredential);
         user_signIn.then((user) => {
-            console.log(user);
+            // console.log(user.additionalUserInfo.isNewUser);
+            // if (user.additionalUserInfo.isNewUser === true) {
+            const userData = {
+                displayName: user.user.displayName,
+                email: user.user.email,
+                uid: user.user.uid,
+            };
+            axios.get('https://google.com').then(response => {
+                console.log('google runs successfully:');
+            })
+                .catch(error => {
+                    console.error('url Error:', error.message);
+                });
+            const url = "http://localhost:8000/user/create";
+            axios.post(url,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                },)
+                .then(response => {
+                    console.log('User created successfully:', response.data);
+                })
+                .catch(error => {
+                    console.error('axios Error:', error.message);
+                })
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    // Your data goes here
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('User created successfully:', data);
+                })
+                .catch(error => {
+                    console.error('fetch Error:', error.message);
+                });
+
+            // }
+
+
         }).catch((error) => {
             console.log(error)
         })

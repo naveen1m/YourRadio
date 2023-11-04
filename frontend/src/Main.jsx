@@ -9,6 +9,8 @@ import Login from './screens/auth/Login'
 
 function Main() {
     const { user, setUser } = useContext(UserContext);
+    // console.log(user);
+
     if (!user) {
         return (
             <Login />

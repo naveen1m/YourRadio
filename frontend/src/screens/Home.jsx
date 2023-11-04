@@ -3,19 +3,46 @@ import { View, StatusBar, TouchableOpacity } from 'react-native'
 import { VStack, Box, ScrollView, Text, Fab, FabLabel, FabIcon, Center } from '@gluestack-ui/themed'
 import PostModal from '../components/PostModal';
 import { createStackNavigator } from '@react-navigation/stack';
+import Logout from './auth/Logout';
+import DeleteUser from './auth/DeleteUser';
+import axios from 'axios';
 
 function Home() {
     const Stack = createStackNavigator();
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);  // need to have context api
     const toggleModal = () => {
         setIsModalVisible(!isModalVisible);
     };
+
+    const baseurl = "http://localhost:8000/";
+    const handleAxios = () => {
+        axios({
+            method: "GET",
+            url: baseurl
+        })
+            .then(response => {
+                console.log('backend response: ', response.data);
+            })
+            .catch(error => {
+                console.error('home axios Error:', error.message);
+            })
+        fetch(baseurl).then(response => {
+            console.log('backend response: ', response.data);
+        })
+            .catch(error => {
+                console.error('home fetch Error:', error.message);
+            })
+    }
+
     return (
         <Fragment>
 
             <ScrollView>
                 <StatusBar backgroundColor="transparent" barStyle="dark-content" />
                 <View>
+                    <Logout />
+                    <DeleteUser />
+                    <TouchableOpacity onPress={handleAxios} style={{ backgroundColor: "black" }} ><Text color='$blue400' >Axios Test</Text></TouchableOpacity>
                     <Box h='100%' marginTop={4} justifyContent="center">
                         <VStack space="sm" reversed={false} >
                             <Box w="$auto" marginLeft={"$2"} marginRight={"$2"} h="$20" bg="$blue300"  >
