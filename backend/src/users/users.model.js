@@ -12,7 +12,7 @@ const UserSchema = new Schema({
     },
     userName: {
         type: String,
-        required: true,
+        // required: true,
     },
     email: {
         type: String,
@@ -24,8 +24,8 @@ const UserSchema = new Schema({
     banner: {      // for notification page
         type: Buffer,
     },
-    followers: [],
-    following: [],
+    followers: [String],
+    following: [String],
     // followers: [{ type: ObjectId, ref: "User" }],
     // following: [{ type: ObjectId, ref: "User" }],
 })
