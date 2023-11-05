@@ -37,10 +37,15 @@ const UserSchema = new Schema({
             ref: "Podcast",
             default: [],
         }
-    ]
+    ],
     // followers: [{ type: ObjectId, ref: "User" }],
     // following: [{ type: ObjectId, ref: "User" }],
-})
+
+    // session expires in 1 day, so need to relogin
+    expireAt: { type: Date, expires: 1 * 24 * 60 * 60 },
+},
+    { timestamps: true, collection: "user" }
+)
 
 const UserModel = mongoose.model("User", UserSchema)
 export default UserModel;
