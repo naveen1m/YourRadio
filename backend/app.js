@@ -6,27 +6,28 @@ import postRouter from './src/posts/posts.route.js';
 import userRouter from './src/users/users.route.js';
 
 
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 3000
 
 /** middlewares */
 const app = express();
 app.use(json());
 app.use(cors({ origin: '*' }));
 app.use(morgan('tiny'))
-app.disable('x-powered-by');
+// app.disable('x-powered-by');
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-});
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//     next();
+// });
+
 // Mount the route handlers
 app.use('/post', postRouter);
 app.use('/user', userRouter)
 
 app.get('/', (req, res) => {
-    res.send("hello there! are you listening me>>>")
+    res.status(200).json("hello there! are you listening me>>>")
 })
 
 // server starts on valid db connection
