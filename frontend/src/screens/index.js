@@ -4,7 +4,8 @@ export { default as Podcast } from './Podcast'
 export { default as Notification } from './Notification'
 
 export { default as Profile } from './Profile'
-export { default as PostPage } from './PostPage'
+export { default as CreatePost } from './CreatePost'
+export { default as Login } from './auth/Login'
 
 
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import { Box, Text } from '@gluestack-ui/themed'
 
-function PostPage() {
+function CreatePost() {
     return (
         <View>
             <Box width="100%" height="100%" justifyContent="center" alignItems="center" bg="$green500" >
@@ -12,4 +12,4 @@ function PostPage() {
     )
 }
 
-export default PostPage
+export default CreatePost

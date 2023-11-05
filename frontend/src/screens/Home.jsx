@@ -9,8 +9,8 @@ import axiosInst from '../config/axiosInstance.js';
 import RegisterFormModal from './auth/RegisterFormModal';
 import { GlobalContext } from '../context/GlobalContext';
 
-function Home() {
-    const Stack = createStackNavigator();
+function Home({ route }) {
+    // const Stack = createStackNavigator();
     const [isModalVisible, setIsModalVisible] = useState(false);  // need to have context api
     const { showRegisterModal, setShowRegisterModal } = useContext(GlobalContext);
 
@@ -35,12 +35,13 @@ function Home() {
             <ScrollView>
                 <StatusBar backgroundColor="transparent" barStyle="dark-content" />
                 <View>
-                    <Logout />
-                    <DeleteUser />
+
                     {showRegisterModal && <RegisterFormModal />}
                     <TouchableOpacity onPress={async () => {
                         await handleAxios()
                     }} style={{ backgroundColor: "black" }} ><Text color='$blue400' >Axios Test</Text></TouchableOpacity>
+                    <Logout />
+                    <DeleteUser />
                     <Box h='100%' marginTop={4} justifyContent="center">
                         <VStack space="sm" reversed={false} >
                             <Box w="$auto" marginLeft={"$2"} marginRight={"$2"} h="$20" bg="$blue300"  >

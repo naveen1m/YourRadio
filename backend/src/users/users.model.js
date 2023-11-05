@@ -26,6 +26,18 @@ const UserSchema = new Schema({
     },
     followers: [String],
     following: [String],
+    posts: [{
+        type: ObjectId,
+        ref: "Post",
+        default: [],
+    }],
+    podcasts: [
+        {
+            type: ObjectId,
+            ref: "Podcast",
+            default: [],
+        }
+    ]
     // followers: [{ type: ObjectId, ref: "User" }],
     // following: [{ type: ObjectId, ref: "User" }],
 })
