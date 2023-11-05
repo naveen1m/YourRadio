@@ -1,31 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { Platform, View } from 'react-native'
-import { Text } from "@gluestack-ui/themed"
-import NativeNavigation from './NativeNavigation'
-import WebNavigation from './WebNavigation'
-import Login from './screens/auth/Login'
-import { GlobalContext } from './context/GlobalContext'
+import React from 'react';
+import { Platform, View } from 'react-native';
+import NativeNavigation from './NativeNavigation';
+import WebNavigation from './WebNavigation';
 
 function Main() {
-    const { user, setUser } = useContext(GlobalContext);
-    // console.log(user);
-
-    if (!user) {
-        return (
-            <Login />
-        )
-    }
-    return (
-
-        <View style={{ flex: 1 }}>
-            {Platform.OS == 'web' ? <WebNavigation /> :
-                <NativeNavigation />
-
-            }
-        </View>
-
-    )
+    const navigator = Platform.OS == 'web' ? <WebNavigation /> : <NativeNavigation />;
+    return <View style={{ flex: 1 }}>{navigator}</View>;
 }
 
-export default Main
-
+export default Main;

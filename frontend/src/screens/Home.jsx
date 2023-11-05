@@ -2,15 +2,15 @@ import React, { Fragment, useContext, useState } from 'react'
 import { View, StatusBar, TouchableOpacity } from 'react-native'
 import { VStack, Box, ScrollView, Text, Fab, FabLabel, FabIcon, Center } from '@gluestack-ui/themed'
 import PostModal from '../components/PostModal';
-import { createStackNavigator } from '@react-navigation/stack';
 import Logout from './auth/Logout';
 import DeleteUser from './auth/DeleteUser';
 import axiosInst from '../config/axiosInstance.js';
 import RegisterFormModal from './auth/RegisterFormModal';
 import { GlobalContext } from '../context/GlobalContext';
+import ViewPost from '../components/ViewPost';
 
 function Home({ route }) {
-    // const Stack = createStackNavigator();
+    const userData = route?.params;
     const [isModalVisible, setIsModalVisible] = useState(false);  // need to have context api
     const { showRegisterModal, setShowRegisterModal } = useContext(GlobalContext);
 
@@ -36,7 +36,7 @@ function Home({ route }) {
                 <StatusBar backgroundColor="transparent" barStyle="dark-content" />
                 <View>
 
-                    {showRegisterModal && <RegisterFormModal />}
+                    {showRegisterModal && <RegisterFormModal userData={userData} />}
                     <TouchableOpacity onPress={async () => {
                         await handleAxios()
                     }} style={{ backgroundColor: "black" }} ><Text color='$blue400' >Axios Test</Text></TouchableOpacity>
@@ -44,6 +44,7 @@ function Home({ route }) {
                     <DeleteUser />
                     <Box h='100%' marginTop={4} justifyContent="center">
                         <VStack space="sm" reversed={false} >
+                            <ViewPost />
                             <Box w="$auto" marginLeft={"$2"} marginRight={"$2"} h="$20" bg="$blue300"  >
                                 <Center>
                                     <Text marginTop="$5" >Post 1</Text>

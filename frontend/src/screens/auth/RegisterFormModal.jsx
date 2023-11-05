@@ -6,7 +6,7 @@ import { FormControlError } from '@gluestack-ui/themed';
 import { FormControlErrorIcon } from '@gluestack-ui/themed';
 import { AlertCircleIcon } from '@gluestack-ui/themed';
 
-function RegisterFormModal() {
+function RegisterFormModal({ userData }) {
     const { showRegisterModal, setShowRegisterModal } = useContext(GlobalContext);
     const [unique, setUnique] = useState(true);
     const [focus, setFocus] = useState(true);
@@ -54,6 +54,8 @@ function RegisterFormModal() {
         const { username, name, about } = formValues;
         console.log(username, name, about);
         if (isUsernameUnique) {
+            const dataToSend = { ...userData, ...formValues };
+            console.log(dataToSend);
             // Submit the form
             // You can do this after checking if the username is unique
         } else {

@@ -1,14 +1,12 @@
-import React, { useContext } from 'react'
-import { NavigationContainer } from '@react-navigation/native';
+import React, { useContext } from 'react';
+import { NavigationContainer, useRoute } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { getHeaderTitle } from '@react-navigation/elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import { Home, SearchPage, Podcast, Notification, Profile, CreatePost, Login } from './screens'
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Home, SearchPage, Notification, Profile, CreatePost, Login, ChatList, ChatDetails } from './screens';
 import Header from './components/Header';
-import ChatList from './screens/chat/ChatList';
 import { GlobalContext } from './context/GlobalContext';
-
 
 // screen constants
 const screenNames = {
@@ -16,22 +14,42 @@ const screenNames = {
     search: 'Search',
     createPost: 'Create post',
     profile: 'Profile',
-    chatList: 'Messages',
+    chat: 'Chat',
     notification: 'Notifications'
-}
+};
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
+const MainStack = createStackNavigator();
+const ChatStack = createStackNavigator();
+
+function ChatStackNavigator() {
+    return (
+        <ChatStack.Navigator
+            initialRouteName={'ChatList'}
+            screenOptions={{
+                headerShown: false
+            }}>
+            <ChatStack.Screen name='ChatList' component={ChatList} />
+            <ChatStack.Screen name='ChatDetails' component={ChatDetails} />
+        </ChatStack.Navigator>
+    );
+}
 
 function StackNavigator() {
-    const { user, setUser } = useContext(GlobalContext);
+    const { user } = useContext(GlobalContext);
+    const initialRouteName = user ? 'TabNav' : 'Login';
     return (
-        <Stack.Navigator initialRouteName={!user ? 'Login' : "HomeScreen"} >
-            <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
-            <Stack.Screen name='Homescreen' component={SearchPage} options={{ headerShown: false }} />
-            <Stack.Screen name='profile' component={Profile} />
-        </Stack.Navigator>
-    )
+        <MainStack.Navigator
+            initialRouteName={initialRouteName}
+            screenOptions={{
+                headerShown: false
+            }}>
+            <MainStack.Screen name='Login' component={Login} />
+            <MainStack.Screen name='Home' component={Home} />
+            <MainStack.Screen name='Profile' component={Profile} />
+            <MainStack.Screen name='TabNav' component={TabNavigator} />
+        </MainStack.Navigator>
+    );
 }
 
 function TabNavigator() {
@@ -42,57 +60,48 @@ function TabNavigator() {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
                     let rn = route.name;
-                    // if (rn == formmodal) {
 
                     if (rn == screenNames.home) {
-                        iconName = focused ? 'home' : 'home-outline'
+                        iconName = focused ? 'home' : 'home-outline';
                     } else if (rn == screenNames.search) {
-                        iconName = focused ? 'search' : 'search-outline'
+                        iconName = focused ? 'search' : 'search-outline';
                     } else if (rn == screenNames.createPost) {
                         iconName = focused ? 'mic-circle' : 'mic-circle-outline'
-                    } else if (rn == screenNames.chatList) {
+                    } else if (rn == screenNames.chat) {
                         iconName = focused ? 'chatbubble-ellipses' : 'chatbubble-ellipses-outline'
-                    }
-                    else if (rn == screenNames.notification) {
-                        iconName = focused ? 'notifications' : 'notifications-outline'
+                    } else if (rn == screenNames.notification) {
+                        iconName = focused ? 'notifications' : 'notifications-outline';
                     } else if (rn == screenNames.profile) {
-                        iconName = focused ? 'person' : 'person-outline'
+                        iconName = focused ? 'person' : 'person-outline';
                     }
 
-                    return <Ionicons name={iconName} size={size} color={color} />
+                    return <Ionicons name={iconName} size={size} color={color} />;
                 },
-                tabBarShowLabel: true,
+                tabBarShowLabel: false,
                 header: ({ navigation, route, options }) => {
                     const title = getHeaderTitle(options, route.name);
 
-                    return <Header title={title} />
+                    return <Header title={title} />;
                 }
-            })}
-        >
-
+            })}>
             <Tab.Screen name={screenNames.home} component={Home} />
             <Tab.Screen name={screenNames.search} component={SearchPage} options={{ headerShown: false }} />
             <Tab.Screen name={screenNames.createPost} component={CreatePost} />
-            <Tab.Screen name={screenNames.chatList} component={ChatList} />
+            <Tab.Screen name={screenNames.chat} component={ChatStackNavigator} />
             <Tab.Screen name={screenNames.notification} component={Notification} />
             <Tab.Screen name={screenNames.profile} component={Profile} options={{ headerShown: false }} />
-
         </Tab.Navigator>
-    )
+    );
 }
 
-
 function NativeNavigation() {
-
     return (
         <>
             <NavigationContainer>
-                <TabNavigator />
-                {/* <StackNavigator /> */}
+                <StackNavigator />
             </NavigationContainer>
-
         </>
-    )
+    );
 }
 
-export default NativeNavigation
+export default NativeNavigation;
