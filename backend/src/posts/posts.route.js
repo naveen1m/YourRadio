@@ -6,7 +6,7 @@ import response from "../helpers/reponseSchema.js";
 
 import multer from "multer";
 
-import * as PostServices from "../../services/postServices.js";
+import * as PostServices from "./postServices.js";
 
 const upload = multer({
     dest: "bin/post/",

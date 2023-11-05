@@ -1,5 +1,5 @@
-import postModel from "../models/post.model.js";
-import userModel from "../models/user.model.js";
+import postModel from "./posts.model.js";
+import userModel from "../users/users.model.js";
 export const createPost = async (body) => {
     return await postModel.create(body);
 };
