@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useState } from 'react'
 import { View, StatusBar, TouchableOpacity } from 'react-native'
-import { VStack, Box, ScrollView, Text, Fab, FabLabel, FabIcon, Center } from '@gluestack-ui/themed'
+import { VStack, Box, ScrollView, Text, Fab, FabLabel, FabIcon, Center, Image, Heading, FlatList } from '@gluestack-ui/themed'
 import PostModal from '../components/PostModal';
 import Logout from './auth/Logout';
 import DeleteUser from './auth/DeleteUser';
@@ -8,6 +8,60 @@ import axiosInst from '../config/axiosInstance.js';
 import RegisterFormModal from './auth/RegisterFormModal';
 import { GlobalContext } from '../context/GlobalContext';
 import ViewPost from '../components/ViewPost';
+
+const data = [
+    {
+        "title": "Morning Hike",
+        "description": "Woke up early and went for a morning hike. The sunrise at the mountain peak was breathtaking.",
+        "author": "Sarah Johnson"
+    },
+    {
+        "title": "Movie Night",
+        "description": "Had an awesome movie night with friends. We watched all-time classics and had lots of popcorn.",
+        "author": "Alex Smith"
+    },
+    {
+        "title": "Beach Day",
+        "description": "Spent the day at the beach.",
+        "author": "Emily Williams"
+    },
+    {
+        "title": "Birthday Celebration",
+        "description": "Celebrated my birthday with loved ones. It was a day filled with laughter and great food.",
+        "author": "Mark Davis"
+    },
+    {
+        "title": "Rainy Day",
+        "description": "Rainy day at home with a good book and a hot cup of tea. Perfect relaxation.",
+        "author": "Olivia Martinez"
+    },
+    {
+        "title": "Road Trip Adventure",
+        "description": "Embarked on a road trip with friends. We explored new places, tried local food, and made unforgettable memories.",
+        "author": "Chris Turner"
+    },
+    {
+        "title": "Cooking Experiment",
+        "description": "Tried a new recipe for the first time. It was a bit challenging, but the end result was delicious.",
+        "author": "Jessica Lee"
+    },
+    {
+        "title": "Gym Workout",
+        "description": "Early morning gym session to kickstart the day. Feeling energized and motivated.",
+        "author": "Michael Johnson"
+    },
+    {
+        "title": "Art Exhibition",
+        "description": "Visited an art exhibition and was inspired by the creativity of the artists. Art truly knows no bounds.",
+        "author": "Lily Parker"
+    },
+    {
+        "title": "Gardening Bliss",
+        "description": "Spent the weekend gardening, planting flowers and vegetables. Nature has a calming effect on the soul.",
+        "author": "Daniel Miller"
+    }
+]
+
 
 function Home({ route }) {
     const userData = route?.params;
@@ -29,6 +83,33 @@ function Home({ route }) {
             })
 
     }
+
+    const PostList = ({ data }) => (
+
+        <Box w="$auto" marginLeft={1} marginRight={1} paddingVertical={2} paddingBottom={6} marginBottom={3} bg="$blue300"  >
+            <Heading underline={true} size={"$xl"} bold={true} paddingLeft={7} >{data.title}</Heading>
+            <View flexDirection='row' >
+                <View flex={3} paddingLeft={3}>
+                    <Text>{data.description}</Text>
+                    <Text alignItems='flex-end' alignContent='flex-end' alignSelf='flex-end' color='$green800' >~ {data.author}</Text>
+
+                </View>
+                <View flex={1}  >
+                    <Center>
+                        <TouchableOpacity >
+                            <Image
+                                size="sm"
+                                borderRadius="$full"
+                                source={require('../../assets/playpause512.png')}
+                                alt='play-pause'
+                            />
+                        </TouchableOpacity>
+                    </Center>
+                </View>
+            </View>
+        </Box>
+
+    )
     return (
         <Fragment>
 
@@ -37,77 +118,26 @@ function Home({ route }) {
                 <View>
 
                     {showRegisterModal && <RegisterFormModal userData={userData} />}
-                    <TouchableOpacity onPress={async () => {
+
+                    {/* <TouchableOpacity onPress={async () => {
                         await handleAxios()
                     }} style={{ backgroundColor: "black" }} ><Text color='$blue400' >Axios Test</Text></TouchableOpacity>
                     <Logout />
-                    <DeleteUser />
+                    <DeleteUser /> */}
+
+
                     <Box h='100%' marginTop={4} justifyContent="center">
-                        <VStack space="sm" reversed={false} >
-                            <ViewPost />
-                            <Box w="$auto" marginLeft={"$2"} marginRight={"$2"} h="$20" bg="$blue300"  >
-                                <Center>
-                                    <Text marginTop="$5" >Post 1</Text>
-                                </Center>
-                            </Box>
-                            <Box w="$auto" marginLeft={"$2"} marginRight={"$2"} h="$20" bg="$blue300"  >
-                                <Center>
-                                    <Text marginTop="$5" >Post 2</Text>
-                                </Center>
-                            </Box>
-                            <Box w="$auto" marginLeft={"$2"} marginRight={"$2"} h="$20" bg="$blue300"  >
-                                <Center>
-                                    <Text marginTop="$5" >Post 3</Text>
-                                </Center>
-                            </Box>
-                            <Box w="$auto" marginLeft={"$2"} marginRight={"$2"} h="$20" bg="$blue300"  >
-                                <Center>
-                                    <Text marginTop="$5" >Post 4</Text>
-                                </Center>
-                            </Box>
-                            <Box w="$auto" marginLeft={"$2"} marginRight={"$2"} h="$20" bg="$blue300"  >
-                                <Center>
-                                    <Text marginTop="$5" >Post 5</Text>
-                                </Center>
-                            </Box>
-                            <Box w="$auto" marginLeft={"$2"} marginRight={"$2"} h="$20" bg="$blue300"  >
-                                <Center>
-                                    <Text marginTop="$5" >Post 6</Text>
-                                </Center>
-                            </Box>
-                            <Box w="$auto" marginLeft={"$2"} marginRight={"$2"} h="$20" bg="$blue400"  >
-                                <Center>
-                                    <Text marginTop="$5" >Post 7</Text>
-                                </Center>
-                            </Box>
-                            <Box w="$auto" marginLeft={"$2"} marginRight={"$2"} h="$20" bg="$blue500"  >
-                                <Center>
-                                    <Text marginTop="$5" >Post 8</Text>
-                                </Center>
-                            </Box>
 
 
-                        </VStack>
+
+                        <FlatList
+                            data={data}
+                            renderItem={({ item }) => <PostList data={item} />}
+                            keyExtractor={(item) => item.title}
+
+                        />
+
                     </Box>
-                    {/* <VStack space="md">
-                        <Box w="$20" h="$20" bg="$blue300" />
-                        <Box w="$20" h="$20" bg="$blue400" />
-                        <Box w="$20" h="$20" bg="$blue500" />
-                    </VStack> */}
-
-                    {/* <Box
-                        h={360}
-                        w={320}
-                        bg="$green"
-                        sx={{
-                            "_dark": {
-                                bg: "$backgroundDark900"
-                            }
-                        }}
-                        borderRadius="$sm"
-                    > */}
-
-                    {/* </Box> */}
 
                 </View>
             </ScrollView>
