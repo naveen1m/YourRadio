@@ -2,16 +2,18 @@ import { View, Text } from '@gluestack-ui/themed'
 import React, { useState, useEffect, useContext } from 'react'
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
-import { UserContext } from '../../context/UserContext';
 import LoginHeader from '../../LoginHeader';
-import axios from 'axios';
-import { API_URL } from '../../config/apiConfig';
+import axiosInst from '../../config/axiosInstance';
+import { GlobalContext } from '../../context/GlobalContext';
+import RegisterFormModal from './RegisterFormModal';
 
 
 function Login() {
     // Set an initializing state whilst Firebase connects
     const [initializing, setInitializing] = useState(true);
-    const { user, setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(GlobalContext);
+    const { showRegisterModal, setShowRegisterModal } = useContext(GlobalContext);
+
 
     GoogleSignin.configure({
         webClientId: '1047977436439-u7kv2656ajnnmss3usma32nov8b4pe14.apps.googleusercontent.com',
@@ -43,53 +45,26 @@ function Login() {
         const user_signIn = auth().signInWithCredential(googleCredential);
         user_signIn.then((user) => {
             // console.log(user.additionalUserInfo.isNewUser);
-            // if (user.additionalUserInfo.isNewUser === true) {
-            const userData = {
+            // if (user.additionalUserInfo.isNewUser) {
+            // open a full modal to get details and add in the userData
+            setShowRegisterModal(true);
+
+            const userData = {  // will add form data here and pass the details
                 displayName: user.user.displayName,
                 email: user.user.email,
                 uid: user.user.uid,
             };
-            axios.get('https://google.com').then(response => {
-                console.log('google runs successfully:');
-            })
-                .catch(error => {
-                    console.error('url Error:', error.message);
-                });
-            const url = "http://localhost:8000/user/create";
-            axios.post(url,
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                },)
-                .then(response => {
-                    console.log('User created successfully:', response.data);
-                })
-                .catch(error => {
-                    console.error('axios Error:', error.message);
-                })
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    // Your data goes here
-                })
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('User created successfully:', data);
-                })
-                .catch(error => {
-                    console.error('fetch Error:', error.message);
-                });
 
+            // axiosInst.post('/user/create', userData)
+            //     .then(response => {
+            //         console.log('User created successfully:', response.data);
+            //     })
+            //     .catch(error => {
+            //         console.error('axios Error:', error.message);
+            //     })
+
+            // } else {
+            //     console.log("user already exist!")
             // }
 
 
@@ -104,6 +79,7 @@ function Login() {
                 <LoginHeader />
                 <Text>Please sign in</Text>
                 <GoogleSigninButton style={{ width: 300, height: 70, marginTop: 50 }} onPress={onGoogleButtonPress} />
+
             </View>
         )
     }
