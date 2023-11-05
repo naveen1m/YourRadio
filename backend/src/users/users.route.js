@@ -5,8 +5,8 @@ const userRouter = Router();
 
 /** Create new user */
 userRouter.post('/create', async (req, res) => {
-    console.log('called user/create')
     const { displayName, email, uid } = req.body;
+    console.log(displayName, email, uid);
 
     const newUser = UserModel({
         name: displayName,
@@ -14,15 +14,37 @@ userRouter.post('/create', async (req, res) => {
         _id: uid
 
     })
+    console.log(newUser);
     try {
         await newUser.save();
+        console.log('saved');
         res.status(201).json(newUser);
     } catch (error) {
-        res.status(500).json({ message: error.message });
-
+        if (error.name === 'ValidationError') {
+            // Handle validation errors
+            res.status(400).json({ message: error.message });
+        } else {
+            // Handle other errors
+            res.status(500).json({ message: error.message });
+        }
     }
 
 })
+userRouter.post('/check-username', async (req, res) => {
+    const { username } = req.query;
+    try {
+        const user = await UserModel.findOne({ username });
+
+        if (user) {
+            res.status(400).json({ isUnique: false });
+        } else {
+            res.status(200).json({ isUnique: true });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 /** Get a user details */
 userRouter.get('/get/:id', async (req, res) => {
     const id = req.params.id;
