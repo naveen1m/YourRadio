@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { View, Text } from "@gluestack-ui/themed";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
-import auth from "@react-native-firebase/auth";
-import { UserContext } from "../../context/UserContext";
+import auth from "@react-native-firebase/auth";;
 import { TouchableOpacity } from "react-native";
+import { GlobalContext } from "../../context/GlobalContext";
 
 function Logout() {
     // Set an initializing state whilst Firebase connects
     const [initializing, setInitializing] = useState(true);
-    const { user, setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(GlobalContext);
 
     GoogleSignin.configure({
         webClientId:

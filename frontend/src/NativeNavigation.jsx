@@ -8,7 +8,9 @@ import { Home, SearchPage, Podcast, Notification, Profile } from './screens'
 import Header from './components/Header';
 
 
+
 // screen constants
+
 const homeName = 'Feed'
 const profileName = 'Profile'
 const searchName = 'Search'
@@ -26,6 +28,7 @@ function TabNavigator() {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
                     let rn = route.name;
+                    // if (rn == formmodal) {
 
                     if (rn == homeName) {
                         iconName = focused ? 'home' : 'home-outline'
