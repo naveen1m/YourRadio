@@ -3,12 +3,11 @@ import { Platform, View } from 'react-native'
 import { Text } from "@gluestack-ui/themed"
 import NativeNavigation from './NativeNavigation'
 import WebNavigation from './WebNavigation'
-import { UserContext } from './context/UserContext'
-
 import Login from './screens/auth/Login'
+import { GlobalContext } from './context/GlobalContext'
 
 function Main() {
-    const { user, setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(GlobalContext);
     // console.log(user);
 
     if (!user) {
