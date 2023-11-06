@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 connect().then(() => {
     try {
         app.listen(port, () => {
-            console.log(`app running at http://localhost:${port}`)
+            console.log(`app running at http://192.168.163.67:${port}`)
         })
     } catch (error) {
         console.error('can not connect to server!')
