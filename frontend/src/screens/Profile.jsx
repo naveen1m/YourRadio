@@ -5,7 +5,7 @@ import HorizontalLine from '../components/HorizontalLine';
 import PostPodcastTab from '../components/PostPodcastTab';
 import { ScrollView, TouchableOpacity } from 'react-native';
 import ViewPost from '../components/ViewPost';
-function Profile() {
+function Profile({ navigation }) {
     return (
         <Fragment>
             <ScrollView>
@@ -94,7 +94,7 @@ function Profile() {
 
                         <View flex={1}  >
                             <Center>
-                                <TouchableOpacity >
+                                <TouchableOpacity onPress={() => navigation.navigate('Podcast')} >
                                     <Image
                                         size="sm"
                                         borderRadius="$full"
