@@ -146,14 +146,13 @@ function Home({ route }) {
                 </View>
             </ScrollView>
 
-            <Fab size="lg" placement="bottom right" marginBottom={'$10'}>
-                {/* <FabIcon mr="$1" /> */}
+            {/* <Fab size="lg" placement="bottom right" marginBottom={'$10'}>
                 <TouchableOpacity onPress={toggleModal}>
                     <Text color='$white'>+ Add post</Text>
                 </TouchableOpacity>
 
                 {isModalVisible && <PostModal modal={true} />}
-            </Fab>
+            </Fab> */}
 
 
 
