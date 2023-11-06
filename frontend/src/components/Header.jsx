@@ -10,7 +10,7 @@ function Header({ title }) {
     return (
         <Fragment>
             <View>
-                <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                {/* <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                     <Avatar bgColor='$amber600' size='md' borderRadius='$full' marginLeft={'$1.5'} marginTop={'$1.5'}>
                         <AvatarFallbackText>Rahul Kumar</AvatarFallbackText>
                         <AvatarImage
@@ -19,14 +19,14 @@ function Header({ title }) {
                             }}
                         />
                     </Avatar>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
                 <Center>
-                    <Heading fontWeight='$bold' margin={0} padding={0}>
-                        {title}
+                    <Heading margin={0} padding={0}>
+                        YourRadio
                     </Heading>
                 </Center>
-                <HorizontalLine />
+                {/* <HorizontalLine /> */}
             </View>
         </Fragment>
     );
