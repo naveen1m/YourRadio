@@ -8,6 +8,7 @@ import axiosInst from '../config/axiosInstance.js';
 import RegisterFormModal from './auth/RegisterFormModal';
 import { GlobalContext } from '../context/GlobalContext';
 import ViewPost from '../components/ViewPost';
+import HeaderHome from '../components/HeaderHome';
 
 const data = [
     {
@@ -117,14 +118,17 @@ function Home({ route }) {
                 <StatusBar backgroundColor="transparent" barStyle="dark-content" />
                 <View>
 
-                    {showRegisterModal && <RegisterFormModal userData={userData} />}
+                    {/* {showRegisterModal && <RegisterFormModal userData={userData} />}
 
-                    {/* <TouchableOpacity onPress={async () => {
+                    <TouchableOpacity onPress={async () => {
                         await handleAxios()
                     }} style={{ backgroundColor: "black" }} ><Text color='$blue400' >Axios Test</Text></TouchableOpacity>
                     <Logout />
                     <DeleteUser /> */}
+                    <HeaderHome />
 
+                    <Heading size={"$md"} bold={true} paddingLeft={5} marginTop={7}  >NEWS FEED … .. .</Heading>
+                    <VStack marginBottom={3} marginTop={1} borderBottomWidth={3} borderBottomColor='$black' />
 
                     <Box h='100%' marginTop={4} justifyContent="center">
 
