@@ -4,9 +4,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { getHeaderTitle } from '@react-navigation/elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Home, SearchPage, Notification, Profile, CreatePost, Login, ChatList, ChatDetails } from './screens';
+import { Home, SearchPage, Notification, Profile, CreatePost, Login, ChatList, ChatDetails, Podcast } from './screens';
 import Header from './components/Header';
 import { GlobalContext } from './context/GlobalContext';
+import CreatePodcast from './screens/CreatePodcast';
 
 // screen constants
 const screenNames = {
@@ -21,6 +22,8 @@ const screenNames = {
 const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
 const ChatStack = createStackNavigator();
+const ProfileStack = createStackNavigator();
+
 
 function ChatStackNavigator() {
     return (
@@ -33,6 +36,17 @@ function ChatStackNavigator() {
             <ChatStack.Screen name='ChatDetails' component={ChatDetails} />
         </ChatStack.Navigator>
     );
+}
+function ProfileStackNavigator() {
+    return (<ProfileStack.Navigator
+        initialRouteName={'Profile'}
+        screenOptions={{
+            headerShown: false
+        }}>
+        <ProfileStack.Screen name='Profile' component={Profile} />
+        <ProfileStack.Screen name='Podcast' component={CreatePodcast} />
+
+    </ProfileStack.Navigator>)
 }
 
 function StackNavigator() {
@@ -85,11 +99,11 @@ function TabNavigator() {
                 }
             })}>
             <Tab.Screen name={screenNames.home} component={Home} />
-            <Tab.Screen name={screenNames.search} component={SearchPage} options={{ headerShown: false }} />
+            <Tab.Screen name={screenNames.search} component={SearchPage} options={{ headerShown: true }} />
             <Tab.Screen name={screenNames.createPost} component={CreatePost} />
             <Tab.Screen name={screenNames.chat} component={ChatStackNavigator} />
             <Tab.Screen name={screenNames.notification} component={Notification} />
-            <Tab.Screen name={screenNames.profile} component={Profile} options={{ headerShown: false }} />
+            <Tab.Screen name={screenNames.profile} component={ProfileStackNavigator} options={{ headerShown: true }} />
         </Tab.Navigator>
     );
 }
