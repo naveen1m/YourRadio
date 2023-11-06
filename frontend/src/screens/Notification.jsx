@@ -97,6 +97,7 @@ function Notification() {
 
     return (
         <View>
+            <VStack marginBottom={0} marginTop={1} borderBottomWidth={1} borderBottomColor='$black' />
 
             <Box paddingTop={1} maxWidth="100%">
 
