@@ -32,19 +32,16 @@ function Profile() {
 
                         </Box>
                         <HStack>
-                            <VStack mx={7} alignItems='center'>
-                                <Text>10</Text>
-                                <Text>Post</Text>
-                            </VStack>
 
-                            <VStack mx={7} alignItems='center'>
-                                <Text>50</Text>
-                                <Text>Follower</Text>
-                            </VStack>
-                            <VStack mx={7} alignItems='center'>
-                                <Text>90</Text>
-                                <Text>Following</Text>
-                            </VStack>
+                            <Text fontWeight='$bold' >10</Text>
+                            <Text fontWeight='$bold' marginRight={8} > posts  •</Text>
+
+                            <Text fontWeight='$bold'>50</Text>
+                            <Text fontWeight='$bold' marginRight={8}> follower  •</Text>
+
+                            <Text fontWeight='$bold'>90</Text>
+                            <Text fontWeight='$bold'> following</Text>
+
                         </HStack>
                         <VStack marginBottom={3} marginTop={4} borderBottomWidth={5} borderBottomColor='$black' />
 
