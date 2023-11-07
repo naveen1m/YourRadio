@@ -27,7 +27,7 @@ const HeaderHome = () => {
                     <View flex={3} marginTop={6} height={50} backgroundColor='#02CCFE' borderRadius='$full' width={'60%'}>
                         <Center>
                             <Input width={"90%"} alignSelf='center' alignContent='center' alignItems='center' marginTop={7} borderWidth={0} borderColor='$transparent'>
-                                <InputField placeholder="Title of your podcast ……" />
+                                <InputField placeholder="Title of your moment ……" />
                             </Input>
                         </Center>
 
@@ -40,7 +40,7 @@ const HeaderHome = () => {
                                 <Image
                                     size="sm"
                                     borderRadius="$full"
-                                    source={require('../../assets/recordaudio512.png')}
+                                    source={require('../../assets/TaptoRecord.png')}
                                     alt='play-pause'
                                 />
                             </TouchableOpacity>
