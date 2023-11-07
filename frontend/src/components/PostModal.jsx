@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Modal, Center, Button, ModalBackdrop, ModalContent, VStack, HStack, ModalHeader, ButtonIcon, Icon, ArrowLeftIcon, ButtonText, Heading, Text, ModalBody, Input, InputField, ModalFooter, Link } from '@gluestack-ui/themed';
 import RecordAudio from './RecordAudio';
+import { GlobalContext } from '../context/GlobalContext';
 
-function PostModal({ modal }) {
-    const [showModal, setShowModal] = useState(modal)
+function PostModal() {
+    const { showModal, setShowModal } = useContext(GlobalContext);
     const [showModal2, setShowModal2] = useState(false)
     const [showModal3, setShowModal3] = useState(false)
     return (
@@ -45,6 +46,9 @@ function PostModal({ modal }) {
                     </ModalFooter>
                 </ModalContent>
             </Modal>
+
+
+
             {/* <Modal
                 isOpen={showModal2}
                 onClose={() => {
