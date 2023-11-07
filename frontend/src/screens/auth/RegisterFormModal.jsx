@@ -41,7 +41,7 @@ function RegisterFormModal({ userData }) {
     const isUsernameUnique = async () => {
         console.log('running is username unique');
         try {
-            const response = await axiosInst.post('/check-username', formValues.username);
+            const response = await axiosInst.post('/user/checkusername', { username: formValues.username });
             setUnique(true);
             return response.data.isUnique;
         } catch (error) {
@@ -50,14 +50,31 @@ function RegisterFormModal({ userData }) {
         }
     }
     console.log("unique", unique)
-    const handleSubmit = () => {
-        const { username, name, about } = formValues;
+    const handleSubmit = async () => {
+        const { username, name, about, tagline } = formValues;
         console.log(username, name, about);
+        console.log({ name: name ?? userData.name });
         if (isUsernameUnique) {
-            const dataToSend = { ...userData, ...formValues };
+            const dataToSend = {
+                ...userData,
+                name: name ?? userData.name,
+                userName: username,
+                about: about,
+                tagline: tagline,
+
+            };
             console.log(dataToSend);
-            // Submit the form
-            // You can do this after checking if the username is unique
+            try {
+                await axiosInst.post('/user/create', dataToSend)
+                    .then(response => {
+                        console.log('User created successfully:', response.data);
+                    })
+                    .catch(error => {
+                        console.error('axios Error:', error.message);
+                    })
+            } catch (error) {
+                console.log({ error: 'axios error', error })
+            }
         } else {
             console.log("message: username is not unique")
         }
@@ -88,7 +105,7 @@ function RegisterFormModal({ userData }) {
 
 
                         <VStack space="md">
-                            <FormControl isRequired={true} isInvalid>
+                            <FormControl isRequired={true} isInvalid >
                                 <FormControlLabel mb="$1">
                                     <FormControlLabelText>Username</FormControlLabelText>
                                 </FormControlLabel>
