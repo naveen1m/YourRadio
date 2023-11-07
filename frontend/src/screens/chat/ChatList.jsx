@@ -13,7 +13,7 @@ const Messages = [
     },
     {
         id: '2',
-        userName: 'John Doe',
+        userName: 'Simmons',
         userImg: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
         messageTime: '2 hours ago',
         messageText:
