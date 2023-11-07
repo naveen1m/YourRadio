@@ -29,6 +29,7 @@ function Logout() {
     const onGoogleButtonPress = async () => {
         await GoogleSignin.signOut();
 
+
         // signs user out from firebase (@react-native-google-signin/.signOut doesnt work)
         await auth().signOut();
     };

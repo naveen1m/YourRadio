@@ -9,8 +9,8 @@ import { StackActions } from '@react-navigation/native';
 function Login({ navigation }) {
     // Set an initializing state whilst Firebase connects
     const [initializing, setInitializing] = useState(true);
-    const { user, setUser } = useContext(GlobalContext);
-    const { showRegisterModal, setShowRegisterModal } = useContext(GlobalContext);
+    const { setUser } = useContext(GlobalContext);
+    const { setShowRegisterModal } = useContext(GlobalContext);
 
     GoogleSignin.configure({
         webClientId: '1047977436439-u7kv2656ajnnmss3usma32nov8b4pe14.apps.googleusercontent.com'
@@ -54,30 +54,25 @@ function Login({ navigation }) {
         user_signIn
             .then(user => {
                 // console.log(user.additionalUserInfo.isNewUser);
-                // if (user.additionalUserInfo.isNewUser) {
-                // open a full modal to get details and add in the userData
-                setShowRegisterModal(true);
+                if (user.additionalUserInfo.isNewUser) {
+                    // open a full modal to get details and add in the userData
+                    setShowRegisterModal(true);
 
-                const userData = {
-                    // will add form data here and pass the details
-                    displayName: user.user.displayName,
-                    email: user.user.email,
-                    uid: user.user.uid
-                };
+                    const userData = {
 
-                navigation.navigate('TabNav', { params: userData, screen: 'Feed' });
-                // navigation.navigate('TabNav', userData);
-                // axiosInst.post('/user/create', userData)
-                //     .then(response => {
-                //         console.log('User created successfully:', response.data);
-                //     })
-                //     .catch(error => {
-                //         console.error('axios Error:', error.message);
-                //     })
+                        name: user.user.displayName,
+                        email: user.user.email,
+                        uid: user.user.uid
+                    };
 
-                // } else {
-                //     console.log("user already exist!")
-                // }
+                    navigation.navigate('TabNav', { params: userData, screen: 'Feed' });
+
+
+
+                } else {
+                    console.log("user already exist!");
+                    navigation.navigate('TabNav');
+                }
             })
             .catch(error => {
                 console.log(error);

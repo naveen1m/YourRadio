@@ -14,6 +14,12 @@ const UserSchema = new Schema({
         type: String,
         // required: true,
     },
+    tagline: {
+        type: String,
+    },
+    about: {
+        type: String,
+    },
     email: {
         type: String,
         required: true,

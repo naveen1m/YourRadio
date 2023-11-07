@@ -5,13 +5,16 @@ const userRouter = Router();
 
 /** Create new user */
 userRouter.post('/create', async (req, res) => {
-    const { displayName, email, uid } = req.body;
-    console.log(displayName, email, uid);
+    const { displayName, email, uid, username, about, tagline } = req.body;
+    console.log(displayName, email, uid, username, about, tagline);
 
     const newUser = UserModel({
         name: displayName,
         email: email,
-        _id: uid
+        _id: uid,
+        userName: username,
+        tagline: tagline,
+        about: about,
 
     })
     console.log(newUser);
@@ -30,11 +33,12 @@ userRouter.post('/create', async (req, res) => {
     }
 
 })
-userRouter.post('/check-username', async (req, res) => {
-    const { username } = req.query;
+userRouter.post('/checkusername', async (req, res) => {
+    const { username } = req.body;
+    console.log(username);
     try {
-        const user = await UserModel.findOne({ username });
-
+        const user = await UserModel.findOne({ userName: username });
+        console.log(user)
         if (user) {
             res.status(400).json({ isUnique: false });
         } else {

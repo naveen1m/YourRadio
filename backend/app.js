@@ -1,3 +1,5 @@
+import dotenv from 'dotenv'
+dotenv.config();
 import express, { json } from 'express'
 import cors from 'cors'
 import connect from './src/database/mongoMemoryConnection.js'
@@ -7,7 +9,7 @@ import userRouter from './src/users/users.route.js';
 import podcastRouter from './src/podcasts/podcast.route.js';
 
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8000
 
 /** middlewares */
 const app = express();
@@ -30,7 +32,7 @@ app.get('/', (req, res) => {
 connect().then(() => {
     try {
         app.listen(port, () => {
-            console.log(`app running at http://192.168.163.67:${port}`)
+            console.log(`app running at http://localhost:${port}`)
         })
     } catch (error) {
         console.error('can not connect to server!')

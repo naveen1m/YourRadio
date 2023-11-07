@@ -73,17 +73,7 @@ function Home({ route }) {
         setIsModalVisible(!isModalVisible);
     };
 
-    const handleAxios = async () => {
 
-        axiosInst.get()
-            .then(response => {
-                console.log('backend response: ', response.data);
-            })
-            .catch(error => {
-                console.error('home axios Error:', error.message);
-            })
-
-    }
 
     const PostList = ({ data }) => (
 
@@ -118,13 +108,11 @@ function Home({ route }) {
                 <StatusBar backgroundColor="transparent" barStyle="dark-content" />
                 <View>
 
-                    {/* {showRegisterModal && <RegisterFormModal userData={userData} />}
+                    {showRegisterModal && <RegisterFormModal userData={userData} />}
 
-                    <TouchableOpacity onPress={async () => {
-                        await handleAxios()
-                    }} style={{ backgroundColor: "black" }} ><Text color='$blue400' >Axios Test</Text></TouchableOpacity>
                     <Logout />
-                    <DeleteUser /> */}
+                    <DeleteUser />
+
                     <HeaderHome />
                     <VStack backgroundColor='$yellow400' marginBottom={3} marginTop={9} borderLeftWidth={3} borderTopWidth={3} borderColor='#A3AAAF'>
                         <TouchableOpacity>

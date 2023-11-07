@@ -39,6 +39,7 @@ function DeleteUser() {
 
         await GoogleSignin.signOut();
 
+
         onAuthStateChanged(null);
     };
 
