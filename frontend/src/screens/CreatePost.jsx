@@ -50,7 +50,7 @@ function CreatePost() {
                             <Image
                                 size="sm"
                                 borderRadius="$full"
-                                source={require('../../assets/recordaudio512.png')}
+                                source={require('../../assets/TaptoRecord.png')}
                                 alt='play-pause'
                             />
                         </TouchableOpacity>

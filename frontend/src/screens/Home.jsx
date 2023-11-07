@@ -101,7 +101,7 @@ function Home({ route }) {
                             <Image
                                 size="sm"
                                 borderRadius="$full"
-                                source={require('../../assets/playpause512.png')}
+                                source={require('../../assets/Play-Pause.png')}
                                 alt='play-pause'
                             />
                         </TouchableOpacity>
@@ -126,6 +126,17 @@ function Home({ route }) {
                     <Logout />
                     <DeleteUser /> */}
                     <HeaderHome />
+                    <VStack backgroundColor='$yellow400' marginBottom={3} marginTop={9} borderLeftWidth={3} borderTopWidth={3} borderColor='#A3AAAF'>
+                        <TouchableOpacity>
+                            <Center>
+
+                                <Heading>Play YourRadio</Heading>
+                            </Center>
+                        </TouchableOpacity>
+
+                    </VStack>
+
+
 
                     <Heading size={"$md"} bold={true} paddingLeft={5} marginTop={7}  >NEWS FEED … .. .</Heading>
                     <VStack marginBottom={3} marginTop={1} borderBottomWidth={3} borderBottomColor='$black' />
