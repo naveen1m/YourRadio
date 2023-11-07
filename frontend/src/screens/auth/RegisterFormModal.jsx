@@ -57,8 +57,8 @@ function RegisterFormModal({ userData }) {
         if (isUsernameUnique) {
             const dataToSend = {
                 ...userData,
-                name: name ?? userData.name,
-                userName: username,
+                displayName: name ?? userData.name,
+                username: username,
                 about: about,
                 tagline: tagline,
 
