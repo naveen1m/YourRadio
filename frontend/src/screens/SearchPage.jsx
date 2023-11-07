@@ -25,7 +25,7 @@ function SearchPage() {
                 </Box>
                 <Box className="searchlist">
                     <ScrollView>
-                        <SearchList />
+                        {/* <SearchList /> */}
                     </ScrollView>
                 </Box>
             </Box>

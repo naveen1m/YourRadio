@@ -5,8 +5,9 @@ import { ScrollView, TouchableOpacity } from 'react-native';
 import ViewPost from '../components/ViewPost';
 import { GlobalContext } from '../context/GlobalContext';
 import axiosInst from '../config/axiosInstance';
+import PostModal from '../components/PostModal';
 function Profile({ navigation }) {
-    const { user, setUser } = useContext(GlobalContext);
+    const { user, setUser, setShowModal } = useContext(GlobalContext);
     const [userData, setUserData] = useState('');
     // console.log(user.uid)
 
@@ -22,7 +23,9 @@ function Profile({ navigation }) {
     const { name, email, about, tagline, followers, following, posts, userName } = user;
 
     // console.log(name, about, tagline, email);
-
+    const handleAudioRecord = () => {
+        setShowModal(true)
+    }
     return (
         <Fragment>
             <ScrollView>
@@ -50,13 +53,13 @@ function Profile({ navigation }) {
                         </Box>
                         <HStack>
 
-                            <Text fontWeight='$bold' >{posts ?? "10"}</Text>
+                            <Text fontWeight='$bold' >5{posts ?? "10"}</Text>
                             <Text fontWeight='$bold' marginRight={8} > posts  •</Text>
 
-                            <Text fontWeight='$bold'>{followers ?? "10"}</Text>
+                            <Text fontWeight='$bold'>15{followers ?? "10"}</Text>
                             <Text fontWeight='$bold' marginRight={8}> follower  •</Text>
 
-                            <Text fontWeight='$bold'>{following ?? "10"}</Text>
+                            <Text fontWeight='$bold'>2{following ?? "10"}</Text>
                             <Text fontWeight='$bold'> following</Text>
 
                         </HStack>
@@ -84,7 +87,7 @@ function Profile({ navigation }) {
                         </View>
                         <View flex={1}  >
                             <Center>
-                                <TouchableOpacity >
+                                <TouchableOpacity onPress={handleAudioRecord}>
                                     <Image
                                         size="sm"
                                         borderRadius="$full"
@@ -93,6 +96,7 @@ function Profile({ navigation }) {
                                     />
                                 </TouchableOpacity>
                                 <Text fontSize="$xs" >tap to record</Text>
+                                <PostModal />
                             </Center>
                         </View>
                     </View>
