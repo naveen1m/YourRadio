@@ -20,7 +20,7 @@ const ViewPost = () => {
                                 <Image
                                     size="sm"
                                     borderRadius="$full"
-                                    source={require('../../assets/playpause512.png')}
+                                    source={require('../../assets/Play-Pause.png')}
                                     alt='play-pause'
                                 />
                             </TouchableOpacity>
