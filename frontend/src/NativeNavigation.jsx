@@ -8,6 +8,8 @@ import { Home, SearchPage, Notification, Profile, CreatePost, Login, ChatList, C
 import Header from './components/Header';
 import { GlobalContext } from './context/GlobalContext';
 import CreatePodcast from './screens/CreatePodcast';
+import { Image } from 'react-native';
+import { Center } from '@gluestack-ui/themed';
 
 // screen constants
 const screenNames = {
@@ -70,33 +72,52 @@ function TabNavigator() {
     return (
         <Tab.Navigator
             initialRouteName={screenNames.home}
+
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
                     let rn = route.name;
 
                     if (rn == screenNames.home) {
-                        iconName = focused ? 'home' : 'home-outline';
+                        iconName = focused ? require('../assets/newsfeed.png') : require('../assets/newsfeed.png');
                     } else if (rn == screenNames.search) {
-                        iconName = focused ? 'search' : 'search-outline';
+                        iconName = focused ? require('../assets/search.png') : require('../assets/search.png');
                     } else if (rn == screenNames.createPost) {
-                        iconName = focused ? 'mic-circle' : 'mic-circle-outline'
+                        iconName = focused ? require('../assets/microphone.png') : require('../assets/microphone.png')
                     } else if (rn == screenNames.chat) {
-                        iconName = focused ? 'chatbubble-ellipses' : 'chatbubble-ellipses-outline'
+                        iconName = focused ? require('../assets/Message.png') : require('../assets/Message.png')
                     } else if (rn == screenNames.notification) {
-                        iconName = focused ? 'notifications' : 'notifications-outline';
+                        iconName = focused ? require('../assets/notification.png') : require('../assets/notification.png');
                     } else if (rn == screenNames.profile) {
-                        iconName = focused ? 'person' : 'person-outline';
+                        iconName = focused ? require('../assets/Profile.png') : require('../assets/Profile.png');
                     }
 
-                    return <Ionicons name={iconName} size={size} color={color} />;
+                    return (
+                        <Center>
+                            <Image source={iconName} style={{ width: size, height: size, alignSelf: 'center', justifyContent: 'center' }} />
+                        </Center>
+                    );
                 },
-                tabBarShowLabel: false,
+                tabBarShowLabel: true,
+                tabBarHideOnKeyboard: true,
+                tabBarStyle: {
+                    marginHorizontal: 5,
+                    paddingBottom: 10,
+                    paddingTop: 15,
+                    borderRadius: 55,
+                    // borderTopRightRadius: 15,
+                    backgroundColor: '#A3AAAF',
+                    position: 'absolute',
+                    height: 60,
+                    marginBottom: 10,
+                },
+                tabBarLabelStyle: { paddingTop: 13, color: 'black' },
                 header: ({ navigation, route, options }) => {
                     const title = getHeaderTitle(options, route.name);
 
                     return <Header title={title} />;
                 }
+
             })}>
             <Tab.Screen name={screenNames.home} component={Home} />
             <Tab.Screen name={screenNames.search} component={SearchPage} options={{ headerShown: true }} />
