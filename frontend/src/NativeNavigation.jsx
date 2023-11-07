@@ -148,9 +148,22 @@ function TabNavigator() {
             <Tab.Screen name={screenNames.chat} component={ChatStackNavigator} options={({ route }) => ({
                 tabBarStyle: ((route) => {
                     const routeName = getFocusedRouteNameFromRoute(route) ?? ""
-
+                    console.log(routeName);
                     if (routeName === 'ChatDetails') {
                         return { display: "none" }
+                    }
+                    if (routeName === 'ChatList') {
+                        return ({
+                            marginHorizontal: 5,
+                            paddingBottom: 10,
+                            paddingTop: 15,
+                            borderRadius: 55,
+                            // borderTopRightRadius: 15,
+                            backgroundColor: '#A3AAAF',
+                            position: 'absolute',
+                            height: 60,
+                            marginBottom: 10,
+                        })
                     }
                     return
                 })(route),
