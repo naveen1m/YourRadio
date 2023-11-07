@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
 import { Center, Image, Input, InputField, View } from '@gluestack-ui/themed';
 import { Text, Box, Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, VStack, HStack, Heading } from '@gluestack-ui/themed';
-import HorizontalLine from '../components/HorizontalLine';
-import PostPodcastTab from '../components/PostPodcastTab';
 import { ScrollView, TouchableOpacity } from 'react-native';
 import ViewPost from '../components/ViewPost';
 function Profile({ navigation }) {
@@ -71,7 +69,7 @@ function Profile({ navigation }) {
                                     <Image
                                         size="sm"
                                         borderRadius="$full"
-                                        source={require('../../assets/recordaudio512.png')}
+                                        source={require('../../assets/TaptoRecord.png')}
                                         alt='play-pause'
                                     />
                                 </TouchableOpacity>
