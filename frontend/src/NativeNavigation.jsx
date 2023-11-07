@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavigationContainer, useRoute } from '@react-navigation/native';
+import { NavigationContainer, getFocusedRouteNameFromRoute, useRoute } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { getHeaderTitle } from '@react-navigation/elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -27,15 +27,37 @@ const ChatStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 
 
-function ChatStackNavigator() {
+function ChatStackNavigator({ navigation }) {
     return (
         <ChatStack.Navigator
             initialRouteName={'ChatList'}
-            screenOptions={{
-                headerShown: false
-            }}>
-            <ChatStack.Screen name='ChatList' component={ChatList} />
-            <ChatStack.Screen name='ChatDetails' component={ChatDetails} />
+
+        >
+            <ChatStack.Screen name='ChatList' component={ChatList} options={{ headerShown: false }} />
+            <ChatStack.Screen name='ChatDetails' component={ChatDetails}
+
+                options={({ route }) => {
+                    const { name } = route.params;
+
+                    return ({
+                        title: name,
+                        headerShown: true,
+                        headerBackTitleVisible: false,
+
+                        headerStyle: {
+                            backgroundColor: '#02CCFE',
+                            borderRadius: 14,
+                            height: 40,
+                        },
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                            fontSize: 18, // Set your desired font size
+
+                        },
+                        tabBarVisible: false,
+
+                    });
+                }} />
         </ChatStack.Navigator>
     );
 }
@@ -69,6 +91,7 @@ function StackNavigator() {
 }
 
 function TabNavigator() {
+
     return (
         <Tab.Navigator
             initialRouteName={screenNames.home}
@@ -122,7 +145,16 @@ function TabNavigator() {
             <Tab.Screen name={screenNames.home} component={Home} />
             <Tab.Screen name={screenNames.search} component={SearchPage} options={{ headerShown: true }} />
             <Tab.Screen name={screenNames.createPost} component={CreatePost} />
-            <Tab.Screen name={screenNames.chat} component={ChatStackNavigator} />
+            <Tab.Screen name={screenNames.chat} component={ChatStackNavigator} options={({ route }) => ({
+                tabBarStyle: ((route) => {
+                    const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+
+                    if (routeName === 'ChatDetails') {
+                        return { display: "none" }
+                    }
+                    return
+                })(route),
+            })} />
             <Tab.Screen name={screenNames.notification} component={Notification} />
             <Tab.Screen name={screenNames.profile} component={ProfileStackNavigator} options={{ headerShown: true }} />
         </Tab.Navigator>
