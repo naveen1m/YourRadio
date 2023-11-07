@@ -7,6 +7,9 @@ function GlobalState({ children }) {
     const [user, setUser] = useState();
     const [showRegisterModal, setShowRegisterModal] = useState(false);
 
+    // Messaging state management
+
+
     return (
         <GlobalContext.Provider value={{ user, setUser, showRegisterModal, setShowRegisterModal }}>
             {children}
