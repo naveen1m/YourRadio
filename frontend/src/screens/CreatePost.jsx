@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { View, Heading, Avatar, Box, Text, Image, AvatarFallbackText, AvatarImage, Center, Textarea, TextareaInput, Input, InputField } from '@gluestack-ui/themed'
 import { ScrollView } from 'react-native-gesture-handler'
+import RecordAudio from '../components/RecordAudio'
+import { GlobalContext } from '../context/GlobalContext'
+import PostModal from '../components/PostModal'
 
 function CreatePost() {
+    const { setShowModal } = useContext(GlobalContext);
+
+    const handleCreatePost = () => {
+        console.log('post created...')
+    }
+    const handleAudioRecord = () => {
+        console.log('audio recording ...');
+        setShowModal(true);
+    }
     return (
         <View>
             <ScrollView>
@@ -23,7 +35,7 @@ function CreatePost() {
                     <View backgroundColor='#02CCFE' flexDirection='row' flex={3} marginTop={6} height={80}  >
                         <View flexDirection='coloumn' justifyContent='center' >
                             <Center>
-                                <Heading paddingHorizontal={4}>Express Your moments … .. .</Heading>
+                                <Heading paddingHorizontal={4} fontSize={18} >Express Your moments … .. .</Heading>
                             </Center>
                         </View>
                     </View>
@@ -46,7 +58,7 @@ function CreatePost() {
                     </View>
 
                     <View alignContent='flex-end' flex={1}>
-                        <TouchableOpacity >
+                        <TouchableOpacity onPress={handleAudioRecord} >
                             <Image
                                 size="sm"
                                 borderRadius="$full"
@@ -54,6 +66,8 @@ function CreatePost() {
                                 alt='play-pause'
                             />
                         </TouchableOpacity>
+                        <PostModal />
+
                     </View>
                 </View>
                 <View alignItems='center' marginTop={22} marginHorizontal={10} paddingHorizontal={8} justifyContent='center' backgroundColor='$green400' borderRadius='$xl' height={70} >
@@ -63,7 +77,7 @@ function CreatePost() {
                 </View>
 
                 <Center marginTop={48}>
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={handleCreatePost} >
                         <Image
                             size="sm"
                             borderRadius="$xl"
@@ -73,7 +87,6 @@ function CreatePost() {
                     </TouchableOpacity>
                     <Heading>Create Post</Heading>
                 </Center>
-
             </ScrollView>
         </View>
     )
