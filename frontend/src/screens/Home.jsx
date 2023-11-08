@@ -106,14 +106,15 @@ function Home({ route }) {
 
             <ScrollView>
                 <StatusBar backgroundColor="transparent" barStyle="dark-content" />
-                <View>
 
+                <View>
                     {showRegisterModal && <RegisterFormModal userData={userData} />}
 
                     {/* <Logout />
                     <DeleteUser /> */}
 
                     <HeaderHome />
+
                     <VStack backgroundColor='$yellow400' marginBottom={3} marginTop={9} borderLeftWidth={3} borderTopWidth={3} borderColor='#A3AAAF'>
                         <TouchableOpacity>
                             <Center>
