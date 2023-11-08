@@ -53,6 +53,7 @@ function RecordAudio() {
                         Recording #{index + 1} | {recordingLine.duration}
                     </Text>
                     <TouchableOpacity onPress={() => recordingLine.sound.replayAsync()} >
+
                         <View>
                             <Ionicons name='play-circle-sharp' size={36} color="black" />
                         </View>
@@ -66,6 +67,7 @@ function RecordAudio() {
     function clearRecordings() {
         setRecordings([])
     }
+
     return (
         <View style={styles.container}>
             {recordings.length === 0 && <TouchableOpacity onPress={recording ? stopRecording : startRecording}>
@@ -90,7 +92,7 @@ function RecordAudio() {
                     </View>
                     :
                     <View marginTop="$2" marginBottom={"$2"}>
-                        <Text>Reacord Now</Text>
+                        <Text>Record Now</Text>
                     </View>
                 }
             </TouchableOpacity>
