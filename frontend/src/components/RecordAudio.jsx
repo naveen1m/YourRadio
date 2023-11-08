@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, View, } from '@gluestack-ui/themed'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
+import * as FileSystem from 'expo-file-system';
 import { Audio } from 'expo-av';
 
 function RecordAudio() {
@@ -19,6 +19,7 @@ function RecordAudio() {
                 });
                 const { recording } = await Audio.Recording.createAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
                 setRecording(recording);
+
             }
         } catch (err) { }
     }
@@ -34,7 +35,39 @@ function RecordAudio() {
             duration: getDurationFormatted(status.durationMillis),
             file: recording.getURI()
         });
+        // Save the recording file to the device's file system
+        const fileName = `recording_${Date.now()}.wav`; // Customize the file name as needed
+        const fileUri = `${FileSystem.documentDirectory}${fileName}`;
+        await FileSystem.copyAsync({
+            from: recording.getURI(),
+            to: fileUri,
+        });
 
+        // Send the recording file to the backend
+        //  try {
+        //    const response = await axios.post('your-backend-api-endpoint', {
+        //      audioFile: {
+        //        uri: fileUri,
+        //        name: fileName,
+        //        type: 'audio/x-wav', // Adjust the file type if needed
+        //      },
+        //    });
+
+        //    console.log('Recording uploaded:', response.data);
+
+        //    // You can handle the response from your backend here
+
+        //    // Update the state with the file URI (if needed)
+        //    // allRecordings.push({
+        //    //   sound: sound,
+        //    //   duration: getDurationFormatted(status.durationMillis),
+        //    //   file: fileUri, // Use the saved file URI instead
+        //    // });
+
+        //    // setRecordings(allRecordings);
+        //  } catch (error) {
+        //    console.error('Error uploading recording:', error);
+        //  }
         setRecordings(allRecordings);
     }
     function getDurationFormatted(milliseconds) {
@@ -67,6 +100,7 @@ function RecordAudio() {
     function clearRecordings() {
         setRecordings([])
     }
+
 
     return (
         <View style={styles.container}>

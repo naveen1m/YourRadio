@@ -36,7 +36,7 @@ function PostModal() {
                         <VStack space="lg" w="$full">
                             <Button
                                 onPress={() => {
-                                    handleAudio
+                                    handleAudio()
                                 }}
                             >
                                 <ButtonText>Done</ButtonText>

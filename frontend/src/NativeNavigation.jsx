@@ -210,7 +210,7 @@ function TabNavigator() {
                     if (routeName === 'ChatDetails') {
                         return { display: "none" }
                     }
-                    if (routeName === 'ChatList') {
+                    else {
                         return ({
                             marginHorizontal: 5,
                             paddingBottom: 10,
