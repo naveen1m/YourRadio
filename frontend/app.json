@@ -4,7 +4,7 @@
     "slug": "frontend",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/radio.png",
     "userInterfaceStyle": "light",
     "updates": {
       "fastRefresh": true
@@ -33,7 +33,7 @@
       "package": "com.navstr10.frontend"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/radio.png"
     },
     "extra": {
       "eas": {

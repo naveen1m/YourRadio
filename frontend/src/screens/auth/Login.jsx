@@ -82,7 +82,7 @@ function Login({ navigation }) {
         <View style={{ flex: 1, justifyContent: 'start', alignItems: 'center', marginTop: '40%' }} >
             <LoginHeader />
             <Center>
-                <Text>Please sign in</Text>
+
 
                 <GoogleSigninButton style={{ width: 300, height: 70, marginTop: 50 }} onPress={onGoogleButtonPress} />
             </Center>
