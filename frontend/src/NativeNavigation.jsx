@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { getHeaderTitle } from '@react-navigation/elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Home, SearchPage, Notification, Profile, CreatePost, Login, ChatList, ChatDetails, Podcast } from './screens';
+import { Home, SearchPage, Notification, Profile, CreatePost, Login, ChatList, ChatDetails, Podcast, SearchedUser } from './screens';
 import Header from './components/Header';
 import { GlobalContext } from './context/GlobalContext';
 import CreatePodcast from './screens/CreatePodcast';
@@ -25,6 +25,7 @@ const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
 const ChatStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
+const SearchStack = createStackNavigator();
 
 
 function ChatStackNavigator({ navigation }) {
@@ -71,6 +72,41 @@ function ProfileStackNavigator() {
         <ProfileStack.Screen name='Podcast' component={CreatePodcast} />
 
     </ProfileStack.Navigator>)
+}
+function SearchStackNavigator({ navigation }) {
+    return (
+        <SearchStack.Navigator
+            initialRouteName={'SearchPage'}
+
+        >
+            <SearchStack.Screen name='SearchPage' component={SearchPage} options={{ headerShown: false }} />
+            <SearchStack.Screen name='SearchedUser' component={SearchedUser}
+
+                options={({ route }) => {
+                    const { name } = route.params;
+
+                    return ({
+                        title: '',
+                        headerShown: true,
+                        headerBackTitleVisible: false,
+
+                        headerStyle: {
+                            backgroundColor: '#A3AAAF',
+                            borderRadius: 14,
+                            height: 40,
+
+                        },
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                            fontSize: 18, // Set your desired font size
+                            backgroundColor: 'transparent'
+                        },
+                        tabBarVisible: false,
+
+                    });
+                }} />
+        </SearchStack.Navigator>
+    );
 }
 
 function StackNavigator() {
@@ -143,7 +179,29 @@ function TabNavigator() {
 
             })}>
             <Tab.Screen name={screenNames.home} component={Home} />
-            <Tab.Screen name={screenNames.search} component={SearchPage} options={{ headerShown: true }} />
+            <Tab.Screen name={screenNames.search} component={SearchStackNavigator} options={({ route }) => ({
+                tabBarStyle: ((route) => {
+                    const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+                    console.log(routeName);
+                    if (routeName === 'SearchedUser') {
+                        return { display: "none" }
+                    }
+                    if (routeName === 'SearchPage') {
+                        return ({
+                            marginHorizontal: 5,
+                            paddingBottom: 10,
+                            paddingTop: 15,
+                            borderRadius: 55,
+                            // borderTopRightRadius: 15,
+                            backgroundColor: '#A3AAAF',
+                            position: 'absolute',
+                            height: 60,
+                            marginBottom: 10,
+                        })
+                    }
+                    return
+                })(route),
+            })} />
             <Tab.Screen name={screenNames.createPost} component={CreatePost} />
             <Tab.Screen name={screenNames.chat} component={ChatStackNavigator} options={({ route }) => ({
                 tabBarStyle: ((route) => {
