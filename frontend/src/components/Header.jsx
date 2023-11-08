@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { View, Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, Center } from '@gluestack-ui/themed';
-import HorizontalLine from './HorizontalLine';
 import { Profile } from '../screens';
 import { useNavigation } from '@react-navigation/native';
 
@@ -26,7 +25,7 @@ function Header({ title }) {
                         YourRadio
                     </Heading>
                 </Center>
-                {/* <HorizontalLine /> */}
+
             </View>
         </Fragment>
     );
