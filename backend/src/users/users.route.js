@@ -129,9 +129,22 @@ userRouter.put('/unfollow/:id', async (req, res) => {
     }
 });
 
-userRouter.post('/usersearch', async (req, res) => {
-    const user = req.query;
+userRouter.get('/searchuser/:key', async (req, res) => {
+    console.log(req.params.key)
 
+    try {
+        let data = await UserModel.find(
+            {
+                "$or": [
+                    { name: { $regex: (req.params.key).toLowerCase(), $options: 'i' } },
+                    { userName: { $regex: req.params.key } }
+                ]
+            }
+        )
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(404).json({ error: 'not found' })
+    }
 
 });
 /** delete a user */
