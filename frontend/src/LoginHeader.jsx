@@ -7,8 +7,8 @@ function LoginHeader() {
         <>
             <StatusBar backgroundColor="transparent" barStyle="dark-content" />
 
-            <View marginTop={10} padding={5}  >
-                <Center flexDirection='row'  >
+            <View marginTop={15}>
+                <Center flexDirection='row' marginTop={0} paddingTop={0}  >
                     <Image
                         size="5xl"
                         borderRadius="$xl"
@@ -21,9 +21,9 @@ function LoginHeader() {
                     </Heading>
 
                 </Center>
-                <Text marginVertical={10}>SIGN-in HERE ... .. .</Text>
-                <Box backgroundColor='$blue400' borderRadius={10} width={280} >
-                    <View flexDirection='row'>
+                <Text marginVertical={10} marginTop={30} marginBottom={30} fontSize={20} fontWeight='$extrabold' >SIGN-in HERE ... .. .</Text>
+                <Box backgroundColor='$blue400' marginLeft={18} borderRadius={10} width={280} >
+                    <View flexDirection='row' >
                         <Text paddingLeft={9} color='$black' flex={1} lex={1} flexDirection='row' alignSelf='center' alignContent='center' alignItems='center' >E-mail :</Text>
                         <Input flex={2} alignSelf='center' alignContent='center' alignItems='center' marginTop={10} borderWidth={0} borderColor='$transparent'>
                             <InputField placeholder='name' />
@@ -40,10 +40,9 @@ function LoginHeader() {
 
                 <Button
                     size="lg"
-                    marginTop={3}
                     variant="solid"
                     action="primary"
-                    backgroundColor="$green600"
+                    marginTop={33}
                     isDisabled={false}
                     isFocusVisible={false}
                     backgroundColor="$yellow400"
@@ -53,9 +52,10 @@ function LoginHeader() {
                     width={150}
                     borderRadius={10}
                 >
-                    <ButtonText color="$black">SIGN in </ButtonText>
+                    <ButtonText color="$black" fontWeight='$extrabold' >SIGN in </ButtonText>
 
                 </Button>
+
                 <Button
                     size="lg"
                     variant="solid"
@@ -63,17 +63,17 @@ function LoginHeader() {
                     backgroundColor="$green600"
                     isDisabled={false}
                     isFocusVisible={false}
-                    marginTop={3}
+                    marginTop={23}
                     width={200}
                     borderRadius={30}
-
+                    marginLeft={100}
 
                 >
-                    <ButtonText color="$black">Create Account </ButtonText>
+                    <ButtonText color="$black" fontWeight='$extrabold' >Create Account </ButtonText>
 
                 </Button>
-                <Text>or <Text>,</Text></Text>
-                <Text>Sign-in with ... .. .</Text>
+                <Text fontWeight='$extrabold' fontSize={20} color='$blue700' paddingTop={20} >or <Text fontWeight='$extrabold' fontSize={20} >,</Text></Text>
+                <Text fontWeight='$extrabold' fontSize={20} paddingTop={20} >Sign-in with ... .. .</Text>
             </View>
         </>
     )

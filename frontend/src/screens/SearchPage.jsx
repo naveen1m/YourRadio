@@ -6,7 +6,7 @@ import axiosInst from '../config/axiosInstance';
 import { GlobalContext } from '../context/GlobalContext';
 
 function SearchPage() {
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState();
     const { searchedUser, setSearchedUser } = useContext(GlobalContext);
 
     useEffect(() => {

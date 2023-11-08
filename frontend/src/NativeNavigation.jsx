@@ -182,11 +182,11 @@ function TabNavigator() {
             <Tab.Screen name={screenNames.search} component={SearchStackNavigator} options={({ route }) => ({
                 tabBarStyle: ((route) => {
                     const routeName = getFocusedRouteNameFromRoute(route) ?? ""
-                    console.log(routeName);
+                    // console.log('routename', routeName);
                     if (routeName === 'SearchedUser') {
                         return { display: "none" }
                     }
-                    if (routeName === 'SearchPage') {
+                    else {
                         return ({
                             marginHorizontal: 5,
                             paddingBottom: 10,

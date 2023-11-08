@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, Center } from '@gluestack-ui/themed';
+import { View, Text, Center, Box } from '@gluestack-ui/themed';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import LoginHeader from '../../LoginHeader';
@@ -79,12 +79,16 @@ function Login({ navigation }) {
             });
     };
     return (
-        <View style={{ flex: 1, justifyContent: 'start', alignItems: 'center', marginTop: '40%' }} >
+        <View style={{ flex: 1, justifyContent: 'start', alignItems: 'center' }} >
             <LoginHeader />
             <Center>
+                <Box marginTop={25} justifyContent='center' height={150} padding={15} alignItems='center' borderRadius={10} borderBottomWidth={2} borderLeftWidth={2} borderRightWidth={2} borderColor="#D3D3D3" shadowOpacity={1} shadowRadius={15} shadowOffset={5} shadowColor='$green500' backgroundColor='$white'>
 
 
-                <GoogleSigninButton style={{ width: 300, height: 70, marginTop: 50 }} onPress={onGoogleButtonPress} />
+
+                    <GoogleSigninButton style={{ width: 300, height: 70 }} onPress={onGoogleButtonPress} />
+
+                </Box>
             </Center>
         </View>
     );
