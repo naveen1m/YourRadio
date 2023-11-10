@@ -5,6 +5,7 @@ import auth from '@react-native-firebase/auth';
 import LoginHeader from '../../LoginHeader';
 import { GlobalContext } from '../../context/GlobalContext';
 import { StackActions } from '@react-navigation/native';
+import axiosInst from '../../config/axiosInstance';
 
 function Login({ navigation }) {
     // Set an initializing state whilst Firebase connects
@@ -18,7 +19,8 @@ function Login({ navigation }) {
 
     // Handle user state changes
     function onAuthStateChanged(user) {
-        setUser(user);
+        console.log(JSON.stringify(user, null, 2));
+        // setUser(user);
         if (initializing) setInitializing(false);
     }
 
@@ -43,8 +45,8 @@ function Login({ navigation }) {
         await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
         // Get the users ID token
         const { idToken } = await GoogleSignin.signIn();
-        // console.log(idToken);
-
+        console.log(idToken);
+        axiosInst.post('/user/login')
         // Create a Google credential with the token
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 

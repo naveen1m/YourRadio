@@ -8,6 +8,19 @@ function Code() {
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
+    // utitlity function to convert BLOB to BASE64
+    const blobToBase64 = (blob) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        return new Promise((resolve) => {
+            reader.onloadend = () => {
+                resolve(reader.result);
+            };
+        });
+    };
+
+
+
 
     return (
         <View style={{ flex: 1 }}>

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { View, Heading, Avatar, Box, Text, Image, AvatarFallbackText, AvatarImage, Center, Textarea, TextareaInput, Input, InputField } from '@gluestack-ui/themed'
 import { ScrollView } from 'react-native-gesture-handler'
-import RecordAudio from '../components/RecordAudio'
+
 import { GlobalContext } from '../context/GlobalContext'
 import PostModal from '../components/PostModal'
 

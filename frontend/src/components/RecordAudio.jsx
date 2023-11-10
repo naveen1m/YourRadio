@@ -4,10 +4,13 @@ import { Text, View, } from '@gluestack-ui/themed'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import * as FileSystem from 'expo-file-system';
 import { Audio } from 'expo-av';
+import axiosInst from '../config/axiosInstance';
+
 
 function RecordAudio() {
     const [recording, setRecording] = React.useState();
     const [recordings, setRecordings] = React.useState([]);
+
 
     async function startRecording() {
         try {
@@ -36,38 +39,37 @@ function RecordAudio() {
             file: recording.getURI()
         });
         // Save the recording file to the device's file system
-        const fileName = `recording_${Date.now()}.wav`; // Customize the file name as needed
-        const fileUri = `${FileSystem.documentDirectory}${fileName}`;
-        await FileSystem.copyAsync({
-            from: recording.getURI(),
-            to: fileUri,
-        });
+        // const fileName = `recording_${Date.now()}.wav`; // Customize the file name as needed
+        // const fileUri = `${FileSystem.documentDirectory}${fileName}`;
+        // await FileSystem.copyAsync({
+        //     from: recording.getURI(),
+        //     to: fileUri,
+        // });
+
+        const fileUri = recording.getURI();
+
+        console.log(fileUri)
 
         // Send the recording file to the backend
-        //  try {
-        //    const response = await axios.post('your-backend-api-endpoint', {
-        //      audioFile: {
-        //        uri: fileUri,
-        //        name: fileName,
-        //        type: 'audio/x-wav', // Adjust the file type if needed
-        //      },
-        //    });
+        // Extract the filename from the fileUri
+        const filename = fileUri.substring(fileUri.lastIndexOf('/') + 1);
+        console.log(filename)
+        const formData = new FormData();
 
-        //    console.log('Recording uploaded:', response.data);
+        formData.append('audio', {
+            uri: fileUri,
+            name: filename, // Use the extracted filename
+            type: 'audio/3gp', // Adjust the file type if needed
+        });
+        try {
+            const response = await axiosInst.post('/post/createpost', formData);
 
-        //    // You can handle the response from your backend here
+            console.log('Recording uploaded:', response.data);
 
-        //    // Update the state with the file URI (if needed)
-        //    // allRecordings.push({
-        //    //   sound: sound,
-        //    //   duration: getDurationFormatted(status.durationMillis),
-        //    //   file: fileUri, // Use the saved file URI instead
-        //    // });
 
-        //    // setRecordings(allRecordings);
-        //  } catch (error) {
-        //    console.error('Error uploading recording:', error);
-        //  }
+        } catch (error) {
+            console.error('Error uploading recording:', error);
+        }
         setRecordings(allRecordings);
     }
     function getDurationFormatted(milliseconds) {

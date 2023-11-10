@@ -110,8 +110,8 @@ function Home({ route }) {
                 <View>
                     {showRegisterModal && <RegisterFormModal userData={userData} />}
 
-                    {/* <Logout />
-                    <DeleteUser /> */}
+                    <Logout />
+                    <DeleteUser />
 
                     <HeaderHome />
 

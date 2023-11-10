@@ -21,7 +21,7 @@ function Header({ title }) {
                 </TouchableOpacity> */}
 
                 <Center>
-                    <Heading margin={0} padding={0}>
+                    <Heading margin={0} padding={0} size='sm' >
                         YourRadio
                     </Heading>
                 </Center>

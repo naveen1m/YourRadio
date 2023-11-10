@@ -5,7 +5,13 @@ import WebNavigation from './WebNavigation';
 
 function Main() {
     const navigator = Platform.OS == 'web' ? <WebNavigation /> : <NativeNavigation />;
-    return <View style={{ flex: 1, margin: 3, fontFamily: 'AmericanTypewriter' }}>{navigator}</View>;
+    return (
+        <View
+
+            style={{ flex: 1, margin: 5 }}>
+            {navigator}
+        </View>
+    );
 }
 
 export default Main;
