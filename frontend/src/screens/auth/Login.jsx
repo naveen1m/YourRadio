@@ -46,7 +46,6 @@ function Login({ navigation }) {
         // Get the users ID token
         const { idToken } = await GoogleSignin.signIn();
         console.log(idToken);
-        axiosInst.post('/user/login')
         // Create a Google credential with the token
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
@@ -54,8 +53,10 @@ function Login({ navigation }) {
         // return auth().signInWithCredential(googleCredential);
         const user_signIn = auth().signInWithCredential(googleCredential);
         user_signIn
-            .then(user => {
+            .then(async (user) => {
                 // console.log(user.additionalUserInfo.isNewUser);
+                // await axiosInst.post('/user/auth/login', { email: user.user.email, idToken: idToken })
+
                 if (user.additionalUserInfo.isNewUser) {
                     // open a full modal to get details and add in the userData
                     setShowRegisterModal(true);
