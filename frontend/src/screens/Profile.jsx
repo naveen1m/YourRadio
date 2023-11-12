@@ -71,9 +71,7 @@ function Profile({ navigation }) {
                         <VStack marginBottom={3} marginTop={4} borderBottomWidth={5} borderBottomColor='$black' />
 
                         <Text>
-                            {about ?? `Studies in Military Academia of Science & Technology
-                            Studied in St.Mary School & College
-                            Went to Daniel Engineering College`}
+                            {about ?? `Studies in Military Academia of Science & Technology`}
                         </Text>
                         <VStack marginBottom={3} marginTop={4} borderBottomWidth={2} borderBottomColor='$black' borderStyle='dotted' />
 
@@ -82,7 +80,7 @@ function Profile({ navigation }) {
                     </Box>
                     <VStack marginBottom={3} marginTop={4} borderBottomWidth={5} borderBottomColor='$black' />
                     <Box>
-                        <HStack backgroundColor='$yellow400' borderRadius={10} paddingHorizontal={2} justifyContent='space-between' >
+                        <HStack backgroundColor='#FFD872' borderRadius={10} paddingHorizontal={2} justifyContent='space-between' >
                             <TouchableOpacity>
                                 <Text fontSize={13}>Edit Profile</Text>
 
@@ -108,9 +106,9 @@ function Profile({ navigation }) {
 
                     <VStack marginBottom={3} marginTop={4} borderBottomWidth={5} borderBottomColor='$black' />
                     <View flexDirection='row' marginHorizontal={5}>
-                        <View flex={3} marginTop={6} backgroundColor='#02CCFE' borderRadius='$full' width={'60%'} height={70}>
+                        <View flex={3} marginTop={6} backgroundColor='#5AC4F6' borderRadius='$full' width={'60%'} height={50}>
                             <Center>
-                                <Input width={"90%"} alignSelf='center' alignContent='center' alignItems='center' marginTop={10} borderWidth={0} borderColor='$transparent'>
+                                <Input width={"90%"} alignSelf='center' alignContent='center' alignItems='center' marginTop={5} borderWidth={0} borderColor='$transparent'>
                                     <InputField placeholder="Title of your moment ……" />
                                 </Input>
                             </Center>
@@ -120,7 +118,7 @@ function Profile({ navigation }) {
                             <Center>
                                 <TouchableOpacity onPress={handleAudioRecord}>
                                     <Image
-                                        size="sm"
+                                        size='sm'
                                         borderRadius="$full"
                                         source={require('../../assets/TaptoRecord.png')}
                                         alt='play-pause'
@@ -134,7 +132,7 @@ function Profile({ navigation }) {
                     <VStack marginBottom={3} marginTop={4} borderBottomWidth={5} borderBottomColor='$black' />
                     <Heading marginLeft={18}>START A PODCAST … .. .</Heading>
                     <View flexDirection='row' marginHorizontal={5}>
-                        <View flex={3} marginTop={6} height={60} backgroundColor='#02CCFE' borderRadius='$full' width={'60%'}>
+                        <View flex={3} marginTop={6} height={60} backgroundColor='#5AC4F6' borderRadius={14} width={'60%'}>
                             <Center>
                                 <Input width={"90%"} alignSelf='center' alignContent='center' alignItems='center' marginTop={10} borderWidth={0} borderColor='$transparent'>
                                     <InputField placeholder="Title of your podcast ……" />

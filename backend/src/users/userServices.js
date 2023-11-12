@@ -1,5 +1,5 @@
 import User from "./users.model.js";
-import { default as Session } from "../models/session.model.js";
+import { default as Session } from "../session.model.js";
 
 export const checkUserExists = async (email, username) => {
     let user = await User.findOne({

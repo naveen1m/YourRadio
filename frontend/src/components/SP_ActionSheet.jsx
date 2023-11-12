@@ -1,6 +1,6 @@
 import { } from 'react-native'
 import React, { useContext } from 'react'
-import { View, Text, Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetItem, ActionsheetItemText, Box, Button, ButtonText, VStack } from '@gluestack-ui/themed'
+import { View, Text, Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetItem, ActionsheetItemText, Box, Button, ButtonText, VStack, Heading } from '@gluestack-ui/themed'
 import { GlobalContext } from '../context/GlobalContext'
 import useLogout from '../screens/auth/useLogout'
 
@@ -21,10 +21,13 @@ const SP_ActionSheet = () => {
                 padding={3}
             >
                 <ActionsheetBackdrop />
-                <ActionsheetContent maxHeight="75%" zIndex={999} backgroundColor='#fffdb0'
-                    padding={10} borderBottomWidth={8} borderTopWidth={8} borderRightWidth={4} borderLeftWidth={4} borderRadius={15} borderColor='#D3D3D3'>
+                <ActionsheetContent maxHeight="75%" zIndex={999} backgroundColor='#FFD872'
+                    padding={10} borderBottomWidth={8} borderTopWidth={8} borderRightWidth={4} borderLeftWidth={4} borderRadius={15} borderColor='#BFBFBF'>
                     <ActionsheetDragIndicatorWrapper>
-                        <ActionsheetDragIndicator />
+                        {/* <ActionsheetDragIndicator /> */}
+                        <Heading fontSize={22} fontWeight='$bold' >Settings & Privacy </Heading>
+                        <VStack width='70%' marginBottom={2} marginTop={2} borderBottomWidth={2} borderBottomColor='$black' />
+
                     </ActionsheetDragIndicatorWrapper>
                     <ActionsheetItem onPress={handleClose}>
                         <ActionsheetItemText>Account Settings</ActionsheetItemText>
