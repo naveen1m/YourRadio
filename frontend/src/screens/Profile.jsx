@@ -6,13 +6,18 @@ import ViewPost from '../components/ViewPost';
 import { GlobalContext } from '../context/GlobalContext';
 import axiosInst from '../config/axiosInstance';
 import PostModal from '../components/PostModal';
+import SP_ActionSheet from '../components/SP_ActionSheet';
 function Profile({ navigation }) {
-    const { user, setUser, setShowModal } = useContext(GlobalContext);
+    const { user, setUser, setShowModal, showActionsheet, setShowActionsheet } = useContext(GlobalContext);
+    console.log('profile user', user)
+
     const [userData, setUserData] = useState('');
     // console.log(user.uid)
 
     // const response = await axiosInst.get(`/user/get/${user.uid}`)
-
+    const handleSP = () => {
+        setShowActionsheet(true);
+    }
     useEffect(() => {
         axiosInst.get(`/user/get/${user.uid}`).then(value => {
             // console.log(value.data);
@@ -75,6 +80,32 @@ function Profile({ navigation }) {
                         <Text>Works at Sunday -Morning</Text>
 
                     </Box>
+                    <VStack marginBottom={3} marginTop={4} borderBottomWidth={5} borderBottomColor='$black' />
+                    <Box>
+                        <HStack backgroundColor='$yellow400' borderRadius={10} paddingHorizontal={2} justifyContent='space-between' >
+                            <TouchableOpacity>
+                                <Text fontSize={13}>Edit Profile</Text>
+
+                            </TouchableOpacity>
+                            <Text>•</Text>
+
+                            <TouchableOpacity>
+                                <Text fontSize={13}>About</Text>
+                            </TouchableOpacity>
+                            <Text>•</Text>
+
+                            <TouchableOpacity>
+                                <Text fontSize={13}>Activity Log</Text>
+                            </TouchableOpacity>
+                            <Text>•</Text>
+                            <TouchableOpacity onPress={handleSP}>
+                                <Text fontSize={13}>Settings & Privacy </Text>
+                            </TouchableOpacity>
+
+                        </HStack>
+                    </Box>
+                    <SP_ActionSheet />
+
                     <VStack marginBottom={3} marginTop={4} borderBottomWidth={5} borderBottomColor='$black' />
                     <View flexDirection='row' marginHorizontal={5}>
                         <View flex={3} marginTop={6} backgroundColor='#02CCFE' borderRadius='$full' width={'60%'} height={70}>
