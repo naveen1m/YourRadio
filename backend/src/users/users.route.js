@@ -1,8 +1,18 @@
 import { Router } from "express";
 import UserModel from "./users.model.js";
 
-const userRouter = Router();
+import authRouter from "./auth/authRouter.js";
 
+import {
+    addUserToSession,
+    checkUserExists,
+    createUser,
+} from "./userServices.js";
+
+import auth from "../middleware/loginMiddleware.js";
+
+const userRouter = Router();
+userRouter.use("/auth", authRouter);
 /** Create new user */
 userRouter.post('/create', async (req, res) => {
     const { displayName, email, uid, username, about, tagline } = req.body;
@@ -23,11 +33,13 @@ userRouter.post('/create', async (req, res) => {
         console.log('saved');
         res.status(201).json(newUser);
     } catch (error) {
+        console.log(error);
         if (error.name === 'ValidationError') {
             // Handle validation errors
             res.status(400).json({ message: error.message });
         } else {
             // Handle other errors
+            console.log(error);
             res.status(500).json({ message: error.message });
         }
     }
