@@ -74,13 +74,17 @@ function ChatList({ navigation }) {
                                 pr: '$5',
                             },
                         }}
-                        py="$2"
+                        py="$0.5"
+
                     >
-                        <HStack space="md" justifyContent="flex-start">
+                        <HStack space="md" justifyContent="flex-start" backgroundColor='$white'
+                            padding={7} borderRadius={10}
+                        >
                             <Avatar size="md">
                                 <AvatarImage source={{ uri: item.userImg }} />
                             </Avatar>
                             <Box
+
                                 sx={{
                                     _web: { width: "90%" },
                                     _ios: { width: "80%" },
