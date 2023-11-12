@@ -24,27 +24,28 @@ const HeaderHome = () => {
 
 
                 <View flex={3} flexDirection='row' marginHorizontal={5}>
-                    <View flex={3} marginTop={6} height={50} backgroundColor='#02CCFE' borderRadius='$full' width={'60%'}>
-                        <Center>
+                    <View flex={3} marginTop={6} height={40} backgroundColor='#02CCFE' borderRadius='$full' >
+                        <Center height={30}>
                             <Input width={"90%"} alignSelf='center' alignContent='center' alignItems='center' marginTop={7} borderWidth={0} borderColor='$transparent'>
-                                <InputField placeholder="Title of your moment ……" />
+                                <InputField fontSize={12} placeholder="Title of your moment ……" />
                             </Input>
                         </Center>
 
-                        <VStack marginBottom={3} marginTop={12} borderBottomWidth={3} borderBottomColor='$blue400' />
+                        <VStack marginBottom={3} marginTop={17} borderBottomWidth={3} borderBottomColor='$blue400' />
                     </View>
 
                     <View flex={1}  >
                         <Center>
                             <TouchableOpacity >
                                 <Image
-                                    size="sm"
+                                    size="xs"
+                                    marginTop={6}
                                     borderRadius="$full"
                                     source={require('../../assets/TaptoRecord.png')}
                                     alt='play-pause'
                                 />
                             </TouchableOpacity>
-                            <Text fontSize="$xs" >tap to record</Text>
+                            <Text size='2xs' paddingLeft={2} >tap to record</Text>
                         </Center>
                     </View>
                 </View>

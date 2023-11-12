@@ -18,7 +18,7 @@ const data = [
     },
     {
         "title": "Movie Night",
-        "description": "Had an awesome movie night with friends. We watched all-time classics and had lots of popcorn.",
+        "description": "Had an awesome movie night with friends.",
         "author": "Alex Smith"
     },
     {
@@ -77,19 +77,19 @@ function Home({ route }) {
 
     const PostList = ({ data }) => (
 
-        <Box w="$auto" marginLeft={1} marginRight={1} paddingVertical={2} paddingBottom={6} marginBottom={3} bg="$blue300"  >
-            <Heading underline={true} size={"$xl"} bold={true} paddingLeft={7} >{data.title}</Heading>
+        <Box w="$auto" marginLeft={1} marginRight={1} paddingVertical={2} paddingBottom={1} marginBottom={3} bg="$blue300"  >
+            <Heading underline={true} size={"$md"} bold={true} paddingLeft={7} >{data.title}</Heading>
             <View flexDirection='row' >
                 <View flex={3} paddingLeft={3}>
-                    <Text>{data.description}</Text>
-                    <Text alignItems='flex-end' alignContent='flex-end' alignSelf='flex-end' color='$green800' >~ {data.author}</Text>
+                    <Text width='100%' size='md' fontSize={13} >{data.description}</Text>
+                    <Text alignItems='flex-end' alignContent='flex-end' marginTop={0} paddingTop={0} alignSelf='flex-end' color='$green800' >~ {data.author}</Text>
 
                 </View>
                 <View flex={1}  >
                     <Center>
                         <TouchableOpacity >
                             <Image
-                                size="sm"
+                                size="xs"
                                 borderRadius="$full"
                                 source={require('../../assets/Play-Pause.png')}
                                 alt='play-pause'
@@ -110,8 +110,8 @@ function Home({ route }) {
                 <View>
                     {showRegisterModal && <RegisterFormModal userData={userData} />}
 
-                    <Logout />
-                    <DeleteUser />
+                    {/* <Logout />
+                    <DeleteUser /> */}
 
                     <HeaderHome />
 
@@ -127,10 +127,10 @@ function Home({ route }) {
 
 
 
-                    <Heading size={"$md"} bold={true} paddingLeft={5} marginTop={7}  >NEWS FEED … .. .</Heading>
-                    <VStack marginBottom={3} marginTop={1} borderBottomWidth={3} borderBottomColor='$black' />
+                    <Heading size={"$md"} bold={true} paddingLeft={5} marginTop={0}  >NEWS FEED … .. .</Heading>
+                    <VStack marginBottom={3} marginTop={0} borderBottomWidth={3} borderBottomColor='$black' />
 
-                    <Box h='100%' marginTop={4} justifyContent="center">
+                    <Box h='100%' marginTop={1} justifyContent="center">
 
 
 
@@ -138,7 +138,6 @@ function Home({ route }) {
                             data={data}
                             renderItem={({ item }) => <PostList data={item} />}
                             keyExtractor={(item) => item.title}
-
                         />
 
                     </Box>
