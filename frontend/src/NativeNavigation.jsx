@@ -112,7 +112,8 @@ function SearchStackNavigator({ navigation }) {
 
 function StackNavigator() {
     const { user } = useContext(GlobalContext);
-    const initialRouteName = user ? 'TabNav' : 'Login';
+    const isUserLoggedIn = !!user;
+    const initialRouteName = isUserLoggedIn ? 'TabNav' : 'Login';
     return (
         <MainStack.Navigator
             initialRouteName={initialRouteName}
