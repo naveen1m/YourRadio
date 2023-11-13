@@ -8,6 +8,8 @@ import PostModal from '../components/PostModal'
 
 function CreatePost() {
     const { setShowModal } = useContext(GlobalContext);
+    const [description, setDescription] = useState();
+    const [title, setTitle] = useState();
 
     const handleCreatePost = () => {
         console.log('post created...')
@@ -16,6 +18,15 @@ function CreatePost() {
         console.log('audio recording ...');
         setShowModal(true);
     }
+
+    function handleDescription(text) {
+        setDescription(text);
+    }
+
+    function handleTitle(text) {
+        setTitle(text);
+    }
+
     return (
         <View>
             <ScrollView>
@@ -48,6 +59,7 @@ function CreatePost() {
                             numberOfLines={4}
                             maxLength={100}
                             placeholder='Describe here….. … .. .'
+                            onChangeText={(text) => handleDescription(text)}
                         />
 
                     </Textarea>
@@ -66,13 +78,13 @@ function CreatePost() {
                                 alt='play-pause'
                             />
                         </TouchableOpacity>
-                        <PostModal />
+                        <PostModal title={title} description={description} />
 
                     </View>
                 </View>
                 <View alignItems='center' marginTop={22} marginHorizontal={10} paddingHorizontal={8} justifyContent='center' backgroundColor='$green400' borderRadius='$xl' height={70} >
                     <Input width={"90%"} alignSelf='center' justifyContent='center' alignContent='center' alignItems='center' marginTop={0} borderWidth={0} borderColor='$transparent'>
-                        <InputField justifyContent='center' placeholder="Title of your moment “………………………………..…”" />
+                        <InputField justifyContent='center' placeholder="Title of your moment “………………………………..…”" onChangeText={(text) => handleTitle(title)} />
                     </Input>
                 </View>
 

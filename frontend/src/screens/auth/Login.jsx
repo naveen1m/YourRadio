@@ -45,7 +45,7 @@ function Login({ navigation }) {
         await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
         // Get the users ID token
         const { idToken } = await GoogleSignin.signIn();
-        console.log(idToken);
+        // console.log("idToken var=",idToken);
         // Create a Google credential with the token
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
@@ -54,21 +54,31 @@ function Login({ navigation }) {
         const user_signIn = auth().signInWithCredential(googleCredential);
         user_signIn
             .then(async (user) => {
-                // console.log(user.additionalUserInfo.isNewUser);
-                // await axiosInst.post('/user/auth/login', { email: user.user.email, idToken: idToken })
+                const verifyIDToken = await auth().currentUser.getIdToken();
+                await axiosInst.post('/user/auth/login', undefined, {
+                    headers: {
+                        Authorization: verifyIDToken
+                    }
+                }).then(value => {
+                    console.log(value.data);
+                }).catch(err => {
+                    console.log(err);
+                })
 
                 if (user.additionalUserInfo.isNewUser) {
                     // open a full modal to get details and add in the userData
                     setShowRegisterModal(true);
 
+                    const verifyIDToken = await auth().currentUser.getIdToken();
                     const userData = {
-
+                        idToken: verifyIDToken,
                         name: user.user.displayName,
                         email: user.user.email,
                         uid: user.user.uid
                     };
+                    console.log("idToken=", verifyIDToken);
 
-                    navigation.navigate('TabNav', { params: userData, screen: 'Feed' });
+                    navigation.navigate('TabNav', { params: userData, screen: 'News feed' });
 
 
 

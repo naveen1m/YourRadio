@@ -5,9 +5,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import * as FileSystem from 'expo-file-system';
 import { Audio } from 'expo-av';
 import axiosInst from '../config/axiosInstance';
+import auth from "@react-native-firebase/auth";
 
-
-function RecordAudio() {
+function RecordAudio({ title, description }) {
     const [recording, setRecording] = React.useState();
     const [recordings, setRecordings] = React.useState([]);
 
@@ -61,14 +61,17 @@ function RecordAudio() {
             name: filename, // Use the extracted filename
             type: 'audio/3gp', // Adjust the file type if needed
         });
+        formData.append("title", title);
+        formData.append("description", description);
+        const verifyIDToken = await auth().currentUser.getIdToken();
         try {
-            const response = await axiosInst.post('/post/createpost', formData);
+            const response = await axiosInst.post("/post/createpost", formData, {
+                headers: { Authorization: verifyIDToken },
+            });
 
-            console.log('Recording uploaded:', response.data);
-
-
+            console.log("Recording uploaded:", response.data);
         } catch (error) {
-            console.error('Error uploading recording:', error);
+            console.error("Error uploading recording:", error);
         }
         setRecordings(allRecordings);
     }

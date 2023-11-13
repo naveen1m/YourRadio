@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from 'react'
+import React, { Fragment, useContext, useState, useEffect } from 'react'
 import { View, StatusBar, TouchableOpacity } from 'react-native'
 import { VStack, Box, ScrollView, Text, Fab, FabLabel, FabIcon, Center, Image, Heading, FlatList } from '@gluestack-ui/themed'
 import PostModal from '../components/PostModal';
@@ -9,6 +9,7 @@ import RegisterFormModal from './auth/RegisterFormModal';
 import { GlobalContext } from '../context/GlobalContext';
 import ViewPost from '../components/ViewPost';
 import HeaderHome from '../components/HeaderHome';
+import auth from '@react-native-firebase/auth'
 
 const data = [
     {
@@ -68,7 +69,7 @@ function Home({ route }) {
     const userData = route?.params;
     const [isModalVisible, setIsModalVisible] = useState(false);  // need to have context api
     const { showRegisterModal, setShowRegisterModal } = useContext(GlobalContext);
-
+    console.log('feed userdata:', userData);
     const toggleModal = () => {
         setIsModalVisible(!isModalVisible);
     };
@@ -101,6 +102,20 @@ function Home({ route }) {
         </Box>
 
     )
+
+    useEffect(() => {
+        async function fetchData() {
+            let idToken = await auth().currentUser.getIdToken();
+            axiosInst
+                .get("/post/allpost", { headers: { Authorization: idToken } })
+                .then((value) => {
+                    console.log(JSON.stringify(value.data, null, 2));
+                    return value.data;
+                });
+        }
+
+    }, []);
+
     return (
         <Fragment>
 

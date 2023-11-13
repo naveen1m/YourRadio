@@ -2,8 +2,9 @@ import React, { useContext, useState } from 'react'
 import { Modal, Center, Button, ModalBackdrop, ModalContent, VStack, HStack, ModalHeader, ButtonIcon, Icon, ArrowLeftIcon, ButtonText, Heading, Text, ModalBody, Input, InputField, ModalFooter, Link } from '@gluestack-ui/themed';
 import RecordAudio from './RecordAudio';
 import { GlobalContext } from '../context/GlobalContext';
+import auth from '@react-native-firebase/auth'
 
-function PostModal() {
+function PostModal({ title, description }) {
     const { showModal, setShowModal } = useContext(GlobalContext);
     const handleAudio = () => {
         setShowModal(false);
@@ -28,8 +29,7 @@ function PostModal() {
                         </VStack>
                     </ModalHeader>
                     <ModalBody height={'$22'}>
-
-                        <RecordAudio />
+                        <RecordAudio description={description} title={title} />
                     </ModalBody>
 
                     <ModalFooter borderTopWidth="$0">

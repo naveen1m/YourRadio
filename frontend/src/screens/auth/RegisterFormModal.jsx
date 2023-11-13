@@ -52,8 +52,9 @@ function RegisterFormModal({ userData }) {
     console.log("unique", unique)
     const handleSubmit = async () => {
         const { username, name, about, tagline } = formValues;
-        console.log(username, name, about);
-        console.log({ name: name ?? userData.name });
+        // console.log(username, name, about);
+        // console.log({ name: name ?? userData.name });
+        console.log('userdata: ', userData);
         if (isUsernameUnique) {
             const dataToSend = {
                 ...userData,
@@ -63,7 +64,7 @@ function RegisterFormModal({ userData }) {
                 tagline: tagline,
 
             };
-            console.log(dataToSend);
+            console.log('dataToSend', dataToSend);
             try {
                 await axiosInst.post('/user/create', dataToSend)
                     .then(response => {
