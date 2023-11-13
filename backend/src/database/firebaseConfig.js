@@ -1,6 +1,9 @@
 import { initializeApp } from "@firebase/app";
 import { getStorage } from "@firebase/storage";
 
+import admin from "firebase-admin";
+
+
 // Set the configuration for your app
 export const firebaseConfig = {
     apiKey: "AIzaSyD6sWpgUny_p0CGreCJg7vc-M5FiTU8Dwo",
@@ -15,3 +18,4 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 // Get a reference to the storage service, which is used to create references in your storage bucket
 export const storage = getStorage(firebaseApp);
+export const admin_app = admin.initializeApp(firebaseConfig);

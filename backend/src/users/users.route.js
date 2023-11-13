@@ -21,7 +21,7 @@ userRouter.post('/create', async (req, res) => {
     const newUser = UserModel({
         name: displayName,
         email: email,
-        _id: uid,
+        uid: uid,
         userName: username,
         tagline: tagline,
         about: about,
@@ -63,9 +63,9 @@ userRouter.post('/checkusername', async (req, res) => {
 });
 /** Get a user details */
 userRouter.get('/get/:id', async (req, res) => {
-    const id = req.params.id;
+    const uid = req.params.id;
     try {
-        const user = await UserModel.findById(id);
+        const user = await UserModel.findById(uid);
         if (user) {
             res.status(200).json(user);
         } else {
@@ -79,10 +79,10 @@ userRouter.get('/get/:id', async (req, res) => {
 
 /** Update a user details */
 userRouter.post('/get/:id', async (req, res) => {
-    const id = req.params.id;
+    const uid = req.params.id;
     const { name, username, photo, banner } = req.body;
     try {
-        const user = await UserModel.findByIdAndUpdate(id, req.body, {
+        const user = await UserModel.findByIdAndUpdate(uid, req.body, {
             new: true,
         });
         if (!user) {

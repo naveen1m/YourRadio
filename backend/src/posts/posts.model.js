@@ -7,7 +7,7 @@ const PostSchema = new Schema({
         ref: "User",
     },
     audio: {
-        type: Buffer,
+        type: String,
         required: true,
     },
     title: {
